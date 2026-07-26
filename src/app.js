@@ -409,7 +409,7 @@ function populateHiddenCard(card, house) {
 
   const hiddenName = document.createElement("p");
   hiddenName.className = "hidden-name";
-  hiddenName.textContent = "Name not yet claimed";
+  hiddenName.textContent = "Unknown";
   card.append(silhouette, hiddenName);
 }
 

@@ -549,28 +549,30 @@ h2 {
 
 .character-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr));
-  gap: 0.85rem;
-  padding: 0.2rem 1.1rem 1.1rem;
+  grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr));
+  gap: 0.35rem;
+  padding: 0.35rem;
   border-top: 1px solid #34322d;
 }
 
 .character-card {
   position: relative;
   display: grid;
-  min-height: 16rem;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 0;
+  aspect-ratio: 1;
   scroll-margin-top: 7rem;
   overflow: hidden;
   background: #111317;
   border: 1px solid #393a3d;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
   isolation: isolate;
 }
 
 .silhouette {
   position: relative;
   display: grid;
-  min-height: 12.25rem;
+  min-height: 0;
   place-items: center;
   overflow: hidden;
   background:
@@ -594,26 +596,26 @@ h2 {
 .silhouette-mark {
   z-index: 1;
   display: grid;
-  width: 3rem;
-  height: 3.5rem;
+  width: 2.1rem;
+  height: 2.45rem;
   place-items: center;
   color: rgb(239 211 145 / 70%);
   background: rgb(17 19 23 / 70%);
   border: 1px solid rgb(209 173 99 / 48%);
   border-radius: 50% 50% 42% 42%;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: 800;
 }
 
 .hidden-name {
   align-self: center;
   margin: 0;
-  padding: 0.85rem;
+  padding: 0.35rem 0.2rem;
   color: #8f8a80;
   font-family: system-ui, sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.52rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-align: center;
   text-transform: uppercase;
 }
@@ -626,30 +628,31 @@ h2 {
 .portrait {
   display: block;
   width: 100%;
-  height: 12.25rem;
+  height: 100%;
+  min-height: 0;
   object-fit: cover;
+  object-position: center top;
   background: #25272a;
   border-bottom: 1px solid #4e4637;
 }
 
 .character-details {
   align-self: center;
-  padding: 0.85rem;
+  min-width: 0;
+  padding: 0.35rem 0.25rem;
   text-align: center;
 }
 
 .character-details h3 {
   margin: 0;
   color: var(--ink);
-  font-size: 1rem;
-  line-height: 1.25;
+  font-family: system-ui, sans-serif;
+  font-size: 0.68rem;
+  line-height: 1.15;
 }
 
 .character-details p {
-  margin: 0.3rem 0 0;
-  color: var(--muted);
-  font-family: system-ui, sans-serif;
-  font-size: 0.72rem;
+  display: none;
 }
 
 .reveal-pulse {
@@ -757,19 +760,9 @@ footer p {
   }
 
   .character-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.55rem;
-    padding: 0.2rem 0.65rem 0.65rem;
-  }
-
-  .character-card {
-    min-height: 14rem;
-  }
-
-  .silhouette,
-  .portrait {
-    min-height: 10rem;
-    height: 10rem;
+    grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
+    gap: 0.3rem;
+    padding: 0.3rem;
   }
 
   .house-section summary {
