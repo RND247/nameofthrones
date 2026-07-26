@@ -2,6 +2,10 @@ import {
   buildNameIndex,
   matchExactName,
 } from "./matcher.js";
+import {
+  collapseLocationGroups,
+  remapCharacterGroups,
+} from "./groups.js";
 
 const STORAGE_KEY = "nameOfThrones:v1:game";
 const DEFAULT_PORTRAIT = "./assets/placeholders/default.svg";
@@ -18,19 +22,6 @@ const HOUSE_PLACEHOLDERS = Object.freeze([
   ["targaryen", "./assets/placeholders/targaryen.svg"],
   ["tully", "./assets/placeholders/tully.svg"],
   ["tyrell", "./assets/placeholders/tyrell.svg"],
-]);
-const FAMOUS_HOUSE_ORDER = Object.freeze([
-  "stark",
-  "lannister",
-  "targaryen",
-  "baratheon",
-  "greyjoy",
-  "tyrell",
-  "martell",
-  "arryn",
-  "tully",
-  "bolton",
-  "frey",
 ]);
 const elements = {
   filterList: getRequiredElement("house-filters"),
@@ -82,17 +73,22 @@ async function initialize() {
         .filter(Boolean),
     );
     const groupIds = new Set(allGroups.map((group) => group.id));
-    const characters = uniqueById(
+    const sourceCharacters = uniqueById(
       extractCollection(charactersPayload, "characters")
         .map((character) => validateCharacter(character, groupIds))
         .filter(Boolean),
     );
     const populatedGroupIds = new Set(
-      characters.map((character) => character.primaryHouseId),
+      sourceCharacters.map((character) => character.primaryHouseId),
     );
-    const groups = allGroups
-      .filter((group) => populatedGroupIds.has(group.id))
-      .sort(compareGroups);
+    const collapsedGroups = collapseLocationGroups(
+      allGroups.filter((group) => populatedGroupIds.has(group.id)),
+    );
+    const groups = collapsedGroups.groups;
+    const characters = remapCharacterGroups(
+      sourceCharacters,
+      collapsedGroups.groupIdBySourceId,
+    );
 
     if (groups.length === 0 || characters.length === 0) {
       throw new Error("The archive data is empty or invalid.");
@@ -219,29 +215,6 @@ function validateCharacter(value, groupIds) {
         : null,
     source: value.source,
   });
-}
-
-function compareGroups(left, right) {
-  const famousHouseDifference =
-    getFamousHouseRank(left.name) - getFamousHouseRank(right.name);
-  if (famousHouseDifference !== 0) {
-    return famousHouseDifference;
-  }
-
-  const leftRank = left.major ? 0 : left.kind === "fallback" ? 1 : 2;
-  const rightRank = right.major ? 0 : right.kind === "fallback" ? 1 : 2;
-  return (
-    leftRank - rightRank ||
-    left.name.localeCompare(right.name, "en", { sensitivity: "base" })
-  );
-}
-
-function getFamousHouseRank(name) {
-  const words = name.toLocaleLowerCase("en-US").match(/\p{L}+/gu) ?? [];
-  const index = FAMOUS_HOUSE_ORDER.findIndex((houseName) =>
-    words.includes(houseName),
-  );
-  return index === -1 ? FAMOUS_HOUSE_ORDER.length : index;
 }
 
 function groupCharacters(characters) {
