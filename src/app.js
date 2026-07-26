@@ -680,7 +680,50 @@ function handleDocumentKeydown(event) {
   if (event.key === "Escape" && !elements.optionsMenu.hidden) {
     setOptionsMenuOpen(false);
     elements.optionsButton.focus({ preventScroll: true });
+    return;
   }
+
+  if (!shouldFocusGuessInput(event)) {
+    return;
+  }
+
+  setOptionsMenuOpen(false);
+  elements.input.focus({ preventScroll: true });
+}
+
+function shouldFocusGuessInput(event) {
+  if (
+    state.activeLevel === null ||
+    elements.input.disabled ||
+    event.defaultPrevented ||
+    event.isComposing ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.altKey ||
+    event.key.length !== 1
+  ) {
+    return false;
+  }
+
+  const target = event.target;
+  if (
+    target === elements.input ||
+    target instanceof HTMLTextAreaElement ||
+    target instanceof HTMLSelectElement ||
+    (target instanceof HTMLInputElement &&
+      !["button", "checkbox", "radio", "reset", "submit"].includes(
+        target.type,
+      )) ||
+    (target instanceof HTMLElement && target.isContentEditable)
+  ) {
+    return false;
+  }
+
+  return !(
+    event.key === " " &&
+    target instanceof Element &&
+    target.closest("button, a, input, label, summary")
+  );
 }
 
 function queueSpellingSuggestion(guess) {
