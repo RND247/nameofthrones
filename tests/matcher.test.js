@@ -85,6 +85,46 @@ test("one accepted name can reveal more than one character", () => {
   ]);
 });
 
+test("a family name reveals every numbered character with that name", () => {
+  const index = buildNameIndex(
+    [
+      {
+        id: "aegon-first",
+        name: "Aegon I",
+        acceptedNames: ["Aegon the Conqueror"],
+        primaryHouseId: "house-targaryen",
+      },
+      {
+        id: "aegon-second",
+        name: "Aegon II",
+        acceptedNames: ["Aegon the Elder"],
+        primaryHouseId: "house-targaryen",
+      },
+      {
+        id: "young-griff",
+        name: "Aegon Targaryen",
+        acceptedNames: ["Young Griff"],
+        primaryHouseId: "house-targaryen",
+      },
+    ],
+    [
+      {
+        id: "house-targaryen",
+        name: "House Targaryen of King's Landing",
+      },
+    ],
+  );
+
+  assert.deepEqual(matchExactName("Aegon Targaryen", index), [
+    "aegon-first",
+    "aegon-second",
+    "young-griff",
+  ]);
+  assert.deepEqual(matchExactName("Aegon I Targaryen", index), [
+    "aegon-first",
+  ]);
+});
+
 test("duplicate accepted names do not duplicate character IDs", () => {
   const index = buildNameIndex(characters);
 

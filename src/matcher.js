@@ -5,6 +5,8 @@ const UNSAFE_PUNCTUATION = /[^\p{L}\p{N}'-]+/gu;
 const APOSTROPHE_SPACING = /\s*'\s*/gu;
 const HYPHEN_SPACING = /\s*-\s*/gu;
 const REPEATED_WHITESPACE = /\s+/gu;
+const HOUSE_NAME = /^House\s+(.+?)(?:\s+of\s+.+)?$/iu;
+const REGNAL_NAME = /^(.+?)\s+([IVXLCDM]+)$/u;
 
 export function normalizeName(value) {
   if (typeof value !== "string") {
@@ -24,13 +26,14 @@ export function normalizeName(value) {
     .trim();
 }
 
-export function buildNameIndex(characters) {
+export function buildNameIndex(characters, groups = []) {
   const matchesByName = new Map();
 
   if (!Array.isArray(characters)) {
     return matchesByName;
   }
 
+  const familyNameByGroupId = buildFamilyNameByGroupId(groups);
   for (const character of characters) {
     if (
       character === null ||
@@ -47,6 +50,7 @@ export function buildNameIndex(characters) {
       ...(Array.isArray(character.acceptedNames)
         ? character.acceptedNames
         : []),
+      ...buildRegnalAliases(character, familyNameByGroupId),
     ];
 
     for (const candidateName of candidateNames) {
@@ -67,6 +71,48 @@ export function buildNameIndex(characters) {
       Object.freeze([...ids]),
     ]),
   );
+}
+
+function buildFamilyNameByGroupId(groups) {
+  const familyNameByGroupId = new Map();
+  if (!Array.isArray(groups)) {
+    return familyNameByGroupId;
+  }
+
+  for (const group of groups) {
+    if (
+      group === null ||
+      typeof group !== "object" ||
+      typeof group.id !== "string" ||
+      typeof group.name !== "string"
+    ) {
+      continue;
+    }
+
+    const match = group.name.trim().match(HOUSE_NAME);
+    const familyName = match?.[1]?.trim() ?? "";
+    if (familyName) {
+      familyNameByGroupId.set(group.id, familyName);
+    }
+  }
+
+  return familyNameByGroupId;
+}
+
+function buildRegnalAliases(character, familyNameByGroupId) {
+  if (typeof character.primaryHouseId !== "string") {
+    return [];
+  }
+
+  const familyName = familyNameByGroupId.get(character.primaryHouseId);
+  const nameMatch = character.name.trim().match(REGNAL_NAME);
+  if (!familyName || !nameMatch) {
+    return [];
+  }
+
+  const givenName = nameMatch[1];
+  const ordinal = nameMatch[2];
+  return [`${givenName} ${familyName}`, `${givenName} ${ordinal} ${familyName}`];
 }
 
 export function buildSuggestionIndex(characters) {

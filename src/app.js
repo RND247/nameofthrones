@@ -348,7 +348,7 @@ function activateLevel(levelId, saveSelection = true) {
     state.characters.map((character) => [character.id, character]),
   );
   state.charactersByGroupId = groupCharacters(state.characters);
-  state.nameIndex = buildNameIndex(state.characters);
+  state.nameIndex = buildNameIndex(state.characters, state.houses);
   state.suggestionIndex = buildSuggestionIndex(state.characters);
   hideSpellingSuggestion();
 

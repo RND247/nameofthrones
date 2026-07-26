@@ -287,6 +287,142 @@
         "Black Walder Rivers"
       ],
       "source_url": "https://gameofthrones.fandom.com/wiki/Walder_Rivers"
+    },
+    {
+      "id": "character-api-38",
+      "accepted_names_add": [
+        "Aegon Targaryen",
+        "Aegon I Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/38"
+    },
+    {
+      "id": "character-api-39",
+      "accepted_names_add": [
+        "Aegon Targaryen",
+        "Aegon II Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/39"
+    },
+    {
+      "id": "character-api-40",
+      "accepted_names_add": [
+        "Aegon Targaryen",
+        "Aegon III Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/40"
+    },
+    {
+      "id": "character-api-41",
+      "accepted_names_add": [
+        "Aegon Targaryen",
+        "Aegon IV Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/41"
+    },
+    {
+      "id": "character-api-46",
+      "accepted_names_add": [
+        "Aegon Targaryen",
+        "Aegon V Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/46"
+    },
+    {
+      "id": "character-api-61",
+      "accepted_names_add": [
+        "Aerys Targaryen",
+        "Aerys I Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/61"
+    },
+    {
+      "id": "character-api-62",
+      "accepted_names_add": [
+        "Aerys Targaryen",
+        "Aerys II Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/62"
+    },
+    {
+      "id": "character-api-273",
+      "accepted_names_add": [
+        "Daeron Targaryen",
+        "Daeron I Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/273"
+    },
+    {
+      "id": "character-api-274",
+      "accepted_names_add": [
+        "Daeron Targaryen",
+        "Daeron II Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/274"
+    },
+    {
+      "id": "character-api-526",
+      "accepted_names_add": [
+        "Jaehaerys Targaryen",
+        "Jaehaerys I Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/526"
+    },
+    {
+      "id": "character-api-527",
+      "accepted_names_add": [
+        "Jaehaerys Targaryen",
+        "Jaehaerys II Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/527"
+    },
+    {
+      "id": "character-api-1076",
+      "accepted_names_add": [
+        "Viserys Targaryen",
+        "Viserys I Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/1076"
+    },
+    {
+      "id": "character-api-1077",
+      "accepted_names_add": [
+        "Viserys Targaryen",
+        "Viserys II Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/1077"
+    },
+    {
+      "id": "character-api-57",
+      "accepted_names_add": [
+        "Aenys Targaryen",
+        "Aenys I Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/57"
+    },
+    {
+      "id": "character-api-160",
+      "accepted_names_add": [
+        "Baelor Targaryen",
+        "Baelor I Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/160"
+    },
+    {
+      "id": "character-api-694",
+      "accepted_names_add": [
+        "Maegor Targaryen",
+        "Maegor I Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/694"
+    },
+    {
+      "id": "character-api-695",
+      "accepted_names_add": [
+        "Maekar Targaryen",
+        "Maekar I Targaryen"
+      ],
+      "source_url": "https://anapioficeandfire.com/api/characters/695"
     }
   ]
 }
