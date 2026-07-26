@@ -30,16 +30,6 @@
         <p class="active-level">
           Level: <strong id="active-level-label"></strong>
         </p>
-        <dl class="game-stats">
-          <div>
-            <dt>Found</dt>
-            <dd><output id="found-count">0</output>/<output id="total-count">0</output></dd>
-          </div>
-          <div>
-            <dt>Time</dt>
-            <dd><time id="timer" datetime="PT0S">00:00</time></dd>
-          </div>
-        </dl>
 
         <div class="header-actions">
           <button class="button button-quiet" id="change-level-button" type="button">
@@ -48,15 +38,34 @@
           <button class="button button-quiet" id="reset-button" type="button">
             Reset game
           </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="guess-pane" id="guess-pane" hidden>
+      <div class="guess-pane-content">
+        <div class="guess-pane-status">
+          <dl class="game-stats">
+            <div>
+              <dt>Found</dt>
+              <dd><output id="found-count">0</output>/<output id="total-count">0</output></dd>
+            </div>
+            <div>
+              <dt>Time</dt>
+              <dd><time id="timer" datetime="PT0S">00:00</time></dd>
+            </div>
+          </dl>
           <div class="options-wrap">
             <button
-              class="button button-quiet"
+              class="button button-quiet button-icon"
               id="options-button"
               type="button"
               aria-controls="options-menu"
               aria-expanded="false"
+              aria-label="Game options"
+              title="Game options"
             >
-              Options
+              <span aria-hidden="true">⚙</span>
             </button>
             <div
               class="options-menu"
@@ -98,47 +107,50 @@
             </div>
           </div>
         </div>
-      </div>
-    </header>
-
-    <div class="guess-pane" id="guess-pane" hidden>
-      <form class="guess-form" id="name-form" novalidate>
-        <label for="name-input">Character name</label>
-        <div class="guess-controls">
-          <input
-            id="name-input"
-            name="character-name"
-            type="text"
-            maxlength="120"
-            autocomplete="off"
-            autocapitalize="words"
-            spellcheck="false"
-            enterkeyhint="done"
-            placeholder="Character name"
-            required
-            aria-describedby="guess-help spelling-suggestion-status guess-message"
-          />
-          <button class="button button-primary" type="submit">Claim</button>
+        <div class="progress-panel">
+          <div class="progress-copy">
+            <span>Realm discovered</span>
+            <output id="progress-label" for="game-progress">0%</output>
+          </div>
+          <progress id="game-progress" value="0" max="1">0%</progress>
         </div>
-        <div class="guess-assistance">
-          <p
-            class="spelling-suggestion-status"
-            id="spelling-suggestion-status"
-            aria-live="polite"
-          >
-            <button
-              class="spelling-suggestion"
-              id="spelling-suggestion"
-              type="button"
-              hidden
-            ></button>
+        <form class="guess-form" id="name-form" novalidate>
+          <label for="name-input">Character name</label>
+          <div class="guess-controls">
+            <input
+              id="name-input"
+              name="character-name"
+              type="text"
+              maxlength="120"
+              autocomplete="off"
+              autocapitalize="words"
+              spellcheck="false"
+              enterkeyhint="done"
+              placeholder="Character name"
+              required
+              aria-describedby="guess-help spelling-suggestion-status guess-message"
+            />
+          </div>
+          <div class="guess-assistance">
+            <p
+              class="spelling-suggestion-status"
+              id="spelling-suggestion-status"
+              aria-live="polite"
+            >
+              <button
+                class="spelling-suggestion"
+                id="spelling-suggestion"
+                type="button"
+                hidden
+              ></button>
+            </p>
+          </div>
+          <p class="form-help" id="guess-help">
+            Exact full names reveal automatically.
           </p>
-        </div>
-        <p class="form-help" id="guess-help">
-          Exact full names reveal automatically.
-        </p>
-        <p class="guess-message" id="guess-message" aria-live="polite"></p>
-      </form>
+          <p class="guess-message" id="guess-message" aria-live="polite"></p>
+        </form>
+      </div>
     </div>
 
     <main id="main-content" tabindex="-1">
@@ -173,13 +185,6 @@
             and television series.
           </p>
 
-          <div class="progress-panel">
-            <div class="progress-copy">
-              <span>Realm discovered</span>
-              <output id="progress-label" for="game-progress">0%</output>
-            </div>
-            <progress id="game-progress" value="0" max="1">0%</progress>
-          </div>
         </section>
 
         <section class="realm" aria-labelledby="realm-heading">

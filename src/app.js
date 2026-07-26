@@ -208,7 +208,6 @@ async function initialize() {
       "The archives could not be opened. Please refresh and try again.";
     elements.loadingState.classList.add("state-message-error");
     elements.input.disabled = true;
-    elements.form.querySelector("button").disabled = true;
   }
 }
 

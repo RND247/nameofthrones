@@ -208,8 +208,8 @@ a {
 
 .header-row {
   display: grid;
-  grid-template-areas: "wordmark level stats actions";
-  grid-template-columns: minmax(10rem, 1fr) auto auto auto;
+  grid-template-areas: "wordmark level actions";
+  grid-template-columns: minmax(10rem, 1fr) auto auto;
   gap: 1rem;
   align-items: center;
   width: min(75rem, calc(100% - 2rem));
@@ -236,9 +236,8 @@ a {
 }
 
 .game-stats {
-  grid-area: stats;
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   margin: 0;
 }
 
@@ -426,7 +425,7 @@ main {
 .header-actions {
   grid-area: actions;
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(2, auto);
   gap: 0.45rem;
   align-items: center;
 }
@@ -450,6 +449,15 @@ main {
   min-height: 2.35rem;
   padding: 0.45rem 0.7rem;
   font-size: 0.74rem;
+}
+
+.button-icon {
+  display: grid;
+  width: 2.35rem;
+  min-height: 2.35rem;
+  padding: 0;
+  place-items: center;
+  font-size: 1.1rem;
 }
 
 .options-wrap {
@@ -586,12 +594,23 @@ h1 {
   position: sticky;
   z-index: 20;
   top: 0;
-  display: grid;
-  place-items: center;
-  padding: 0.65rem 0;
+  padding: 0.5rem 0 0.65rem;
   background: var(--night-soft);
   border-bottom: 1px solid var(--line);
   box-shadow: var(--header-shadow);
+}
+
+.guess-pane-content {
+  width: min(42rem, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.guess-pane-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.35rem;
+  margin-bottom: 0.4rem;
 }
 
 .guess-form > label,
@@ -607,9 +626,7 @@ h1 {
 }
 
 .guess-controls {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.65rem;
+  display: block;
 }
 
 .guess-controls input {
@@ -628,10 +645,6 @@ h1 {
 
 .guess-controls input:hover {
   border-color: var(--gold);
-}
-
-.guess-controls .button {
-  min-height: 2.75rem;
 }
 
 .guess-assistance {
@@ -693,8 +706,8 @@ h1 {
 }
 
 .progress-panel {
-  width: min(42rem, 100%);
-  margin-top: 1.4rem;
+  width: 100%;
+  margin: 0 0 0.5rem;
 }
 
 .progress-copy {
@@ -1130,8 +1143,8 @@ footer p {
 @media (max-width: 46rem) {
   .header-row {
     grid-template-areas:
-      "wordmark stats"
-      "level actions";
+      "wordmark actions"
+      "level level";
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.65rem;
     padding: 0.55rem 0;
@@ -1144,8 +1157,8 @@ footer p {
   }
 
   .header-actions {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    width: min(100%, 19rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(100%, 13rem);
   }
 
   .header-actions .button,
@@ -1153,12 +1166,16 @@ footer p {
     width: 100%;
   }
 
+  .guess-pane .options-wrap > .button-icon {
+    width: 2.35rem;
+  }
+
   .options-menu {
     right: 0;
   }
 
   .active-level {
-    text-align: left;
+    text-align: center;
   }
 
   .button-quiet {
@@ -1185,21 +1202,6 @@ footer p {
 }
 
 @media (max-width: 32rem) {
-  .header-row {
-    grid-template-areas:
-      "wordmark stats"
-      "level level"
-      "actions actions";
-  }
-
-  .header-actions {
-    width: 100%;
-  }
-
-  .active-level {
-    text-align: center;
-  }
-
   .header-row,
   .level-picker,
   .hero,
