@@ -371,7 +371,7 @@
         "book-3"
       ],
       "article_length": null,
-      "portrait_path": null,
+      "portrait_path": "portraits/commons-catelyn-stark.jpg",
       "source": {
         "source_id": "an-api-of-ice-and-fire",
         "url": "https://anapioficeandfire.com/api/characters/232",
@@ -515,7 +515,7 @@
         "book-8"
       ],
       "article_length": null,
-      "portrait_path": null,
+      "portrait_path": "portraits/commons-jaime-lannister.jpg",
       "source": {
         "source_id": "an-api-of-ice-and-fire",
         "url": "https://anapioficeandfire.com/api/characters/529",

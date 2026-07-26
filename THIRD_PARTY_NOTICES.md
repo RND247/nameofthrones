@@ -50,6 +50,18 @@ and revision attribution and follow the share-alike terms.
 
 This project does not reuse images from A Wiki of Ice and Fire.
 
+## Wikimedia Commons portraits
+
+The project includes two reviewed cosplay photographs, for Catelyn Stark and
+Jaime Lannister, taken by Pasi Välkkynen and licensed under
+[CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). The exact
+source pages, file URLs, and attribution details are recorded in
+[`data/commons-image-manifest.json`](data/commons-image-manifest.json).
+
+These portrait files are excluded from the MIT code license. Future Commons
+images must be checked individually for a reusable license and recorded with
+their required attribution before publication.
+
 ## George R. R. Martin, publishers, and HBO
 
 The names, characters, settings, histories, and other story elements related

@@ -35,6 +35,19 @@ covered by the MIT code license or grant any extra rights to it. Users should
 review the source terms and applicable law before copying or redistributing the
 data.
 
+## Wikimedia Commons portraits
+
+The project includes two reviewed cosplay photographs from Wikimedia Commons:
+
+- **Catelyn Stark**, and **Jaime Lannister**, photographed by
+  [Pasi Välkkynen](https://commons.wikimedia.org/wiki/User:Valpas), under
+  [CC BY-SA 2.0][cc-by-sa-2].
+
+Their source pages, original file URLs, local paths, and review dates are in
+[`data/commons-image-manifest.json`](data/commons-image-manifest.json). These
+files are not covered by the MIT code license. Future Commons imports must be
+individually reviewed for a reusable license and recorded in that manifest.
+
 ## A Wiki of Ice and Fire
 
 [A Wiki of Ice and Fire](https://awoiaf.westeros.org/) is the preferred future
@@ -81,6 +94,7 @@ official art, franchise designs, or real actors.
 
 [api]: https://anapioficeandfire.com/Documentation
 [cc-by-sa]: https://creativecommons.org/licenses/by-sa/3.0/
+[cc-by-sa-2]: https://creativecommons.org/licenses/by-sa/2.0/
 [wikipedia-characters]: https://en.wikipedia.org/wiki/List_of_Game_of_Thrones_characters
 [cc-by-sa-4]: https://creativecommons.org/licenses/by-sa/4.0/
 [got-wiki]: https://gameofthrones.fandom.com/wiki/Category:Individuals_appearing_in_Game_of_Thrones
