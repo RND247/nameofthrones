@@ -87,6 +87,37 @@ export function remapCharacterGroups(characters, groupIdBySourceId) {
   });
 }
 
+export function assignCharactersToMatchingHouses(characters, groups) {
+  if (!Array.isArray(characters) || !Array.isArray(groups)) {
+    return [];
+  }
+
+  const groupIdByFamilyName = buildGroupIdByFamilyName(groups);
+  return characters.map((character) => {
+    if (
+      character === null ||
+      typeof character !== "object" ||
+      typeof character.name !== "string"
+    ) {
+      return character;
+    }
+
+    const surname = getSurname(character.name);
+    const matchingGroupId = groupIdByFamilyName.get(surname);
+    if (!matchingGroupId) {
+      return character;
+    }
+
+    return Object.freeze({
+      ...character,
+      primaryHouseId: matchingGroupId,
+      houseIds: Object.freeze([
+        ...new Set([...character.houseIds, matchingGroupId]),
+      ]),
+    });
+  });
+}
+
 export function compareGroups(left, right) {
   const famousHouseDifference =
     getFamousHouseRank(left.name) - getFamousHouseRank(right.name);
@@ -109,6 +140,36 @@ function getDisplayName(group) {
 
   const locationMatch = /^House\s+(.+?)\s+of\s+.+$/iu.exec(group.name);
   return locationMatch ? `House ${locationMatch[1]}` : group.name;
+}
+
+function buildGroupIdByFamilyName(groups) {
+  const groupIdByFamilyName = new Map();
+  for (const group of groups) {
+    if (
+      group === null ||
+      typeof group !== "object" ||
+      group.kind !== "house" ||
+      typeof group.id !== "string" ||
+      typeof group.name !== "string"
+    ) {
+      continue;
+    }
+
+    const familyName = getSurname(getDisplayName(group));
+    if (familyName && !groupIdByFamilyName.has(familyName)) {
+      groupIdByFamilyName.set(familyName, group.id);
+    }
+  }
+  return groupIdByFamilyName;
+}
+
+function getSurname(value) {
+  const words = value
+    .normalize("NFKD")
+    .replace(/\p{M}+/gu, "")
+    .toLocaleLowerCase("en-US")
+    .match(/\p{L}+/gu);
+  return words?.at(-1) ?? "";
 }
 
 function getFamousHouseRank(name) {

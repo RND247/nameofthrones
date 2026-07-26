@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  assignCharactersToMatchingHouses,
   collapseLocationGroups,
   remapCharacterGroups,
 } from "../src/groups.js";
@@ -91,6 +92,45 @@ test("characters from location branches move into the collapsed house", () => {
     remapped.map((character) => character.primaryHouseId),
     ["display-house-baratheon", "display-house-baratheon"],
   );
+});
+
+test("a character's surname assigns them to the matching house", () => {
+  const characters = [
+    {
+      id: "robert",
+      name: "Robert I Baratheon",
+      primaryHouseId: "group-unaffiliated",
+      houseIds: [],
+    },
+    {
+      id: "sansa",
+      name: "Sansa Stark",
+      primaryHouseId: "house-lannister",
+      houseIds: ["house-lannister"],
+    },
+    {
+      id: "sam",
+      name: "Samwell",
+      primaryHouseId: "group-unaffiliated",
+      houseIds: [],
+    },
+  ];
+  const assigned = assignCharactersToMatchingHouses(characters, groups);
+  const collapsed = collapseLocationGroups(groups);
+  const remapped = remapCharacterGroups(assigned, collapsed.groupIdBySourceId);
+
+  assert.deepEqual(
+    remapped.map((character) => character.primaryHouseId),
+    [
+      "display-house-baratheon",
+      "display-house-stark",
+      "group-unaffiliated",
+    ],
+  );
+  assert.deepEqual(assigned[1].houseIds, [
+    "house-lannister",
+    "stark-winterfell",
+  ]);
 });
 
 test("known houses stay ahead of fallback and minor groups", () => {

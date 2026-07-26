@@ -5,6 +5,7 @@ import {
   matchExactName,
 } from "./matcher.js";
 import {
+  assignCharactersToMatchingHouses,
   collapseLocationGroups,
   remapCharacterGroups,
 } from "./groups.js";
@@ -157,10 +158,13 @@ async function initialize() {
       groupIds,
     );
     const levels = validateLevelPayload(levelsPayload);
-    const characters = applyCharacterOverrides(
-      combineCharacters(existingCharacters, showCharacters),
-      overridesPayload,
-    );
+      const characters = assignCharactersToMatchingHouses(
+        applyCharacterOverrides(
+          combineCharacters(existingCharacters, showCharacters),
+          overridesPayload,
+        ),
+        allGroups,
+      );
     const rosters = buildLevelRosters(levels, characters);
 
     if (
