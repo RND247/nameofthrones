@@ -50,18 +50,6 @@ and revision attribution and follow the share-alike terms.
 
 This project does not reuse images from A Wiki of Ice and Fire.
 
-## Wikimedia Commons portraits
-
-The project includes two reviewed cosplay photographs, for Catelyn Stark and
-Jaime Lannister, taken by Pasi Välkkynen and licensed under
-[CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). The exact
-source pages, file URLs, and attribution details are recorded in
-[`data/commons-image-manifest.json`](data/commons-image-manifest.json).
-
-These portrait files are excluded from the MIT code license. Future Commons
-images must be checked individually for a reusable license and recorded with
-their required attribution before publication.
-
 ## George R. R. Martin, publishers, and HBO
 
 The names, characters, settings, histories, and other story elements related
@@ -79,12 +67,11 @@ Martin, HBO, or any related publisher, licensee, or rights holder.
 
 ## Generated assets
 
-The current release does not claim to include generated character portraits.
-If AI-generated portraits are added later, they are noncanonical
-interpretations, not official art or factual references. They may be
-inaccurate or biased and require human review. They must not copy wiki images,
-official artwork, protected franchise designs, or the likeness of a real
-actor.
+The current release includes 40 Newcomer character portraits supplied by the
+project maintainer. They are noncanonical interpretations, not official art or
+factual references. They may be inaccurate or biased and require human review.
+They must not copy wiki images, official artwork, protected franchise designs,
+or the likeness of a real actor.
 
 Generated assets are excluded from the MIT code license. Their use and
 distribution must be reviewed separately.
