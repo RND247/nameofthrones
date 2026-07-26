@@ -91,15 +91,17 @@ a {
 
 .header-row {
   display: grid;
-  grid-template-columns: minmax(11rem, 1fr) auto auto;
-  gap: 1.25rem;
+  grid-template-areas: "wordmark guess stats reset";
+  grid-template-columns: auto minmax(18rem, 1fr) auto auto;
+  gap: 1rem;
   align-items: center;
   width: min(75rem, calc(100% - 2rem));
-  min-height: 4.25rem;
+  min-height: 5.5rem;
   margin: 0 auto;
 }
 
 .wordmark {
+  grid-area: wordmark;
   display: inline-flex;
   gap: 0.65rem;
   align-items: center;
@@ -117,6 +119,7 @@ a {
 }
 
 .game-stats {
+  grid-area: stats;
   display: flex;
   gap: 1.5rem;
   margin: 0;
@@ -146,11 +149,13 @@ a {
 }
 
 .spoiler-notice {
-  margin: 0;
-  padding: 0.38rem 1rem;
+  max-width: 42rem;
+  margin: 1.2rem 0 0;
+  padding: 0.65rem 0.85rem;
   color: #d8cdb7;
   background: #242017;
-  border-top: 1px solid #3d3523;
+  border: 1px solid #3d3523;
+  border-radius: 0.2rem;
   font-family: system-ui, sans-serif;
   font-size: 0.78rem;
   text-align: center;
@@ -197,6 +202,10 @@ a {
   color: var(--ink);
   background: transparent;
   border-color: var(--line);
+}
+
+.header-row > .button-quiet {
+  grid-area: reset;
 }
 
 .button-quiet:hover,
@@ -259,18 +268,22 @@ h1 {
 }
 
 .guess-form {
-  width: min(42rem, 100%);
-  margin-top: 2.4rem;
+  grid-area: guess;
+  width: 100%;
+  margin: 0;
   text-align: left;
 }
 
-.guess-form > label {
-  display: block;
-  margin-bottom: 0.55rem;
-  color: var(--ink);
-  font-family: system-ui, sans-serif;
-  font-size: 0.88rem;
-  font-weight: 750;
+.guess-form > label,
+.form-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .guess-controls {
@@ -281,7 +294,7 @@ h1 {
 
 .guess-controls input {
   width: 100%;
-  min-height: 3.35rem;
+  min-height: 2.75rem;
   padding: 0.65rem 0.9rem;
   color: var(--ink);
   caret-color: var(--gold-bright);
@@ -298,24 +311,20 @@ h1 {
 }
 
 .guess-controls .button {
-  min-height: 3.35rem;
+  min-height: 2.75rem;
 }
 
-.form-help,
 .guess-message {
-  margin: 0.6rem 0 0;
+  margin: 0.2rem 0 0;
   font-family: system-ui, sans-serif;
-  font-size: 0.82rem;
-}
-
-.form-help {
-  color: var(--muted);
+  font-size: 0.74rem;
 }
 
 .guess-message {
-  min-height: 1.35rem;
+  min-height: 1rem;
   color: var(--ink);
   font-weight: 650;
+  line-height: 1.2;
 }
 
 .guess-message[data-type="error"] {
@@ -550,6 +559,7 @@ h2 {
   position: relative;
   display: grid;
   min-height: 16rem;
+  scroll-margin-top: 7rem;
   overflow: hidden;
   background: #111317;
   border: 1px solid #393a3d;
@@ -700,14 +710,16 @@ footer p {
 
 @media (max-width: 46rem) {
   .header-row {
+    grid-template-areas:
+      "wordmark reset"
+      "guess guess"
+      "stats stats";
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.65rem;
     padding: 0.55rem 0;
   }
 
   .game-stats {
-    grid-row: 2;
-    grid-column: 1 / -1;
     justify-content: center;
     padding-top: 0.5rem;
     border-top: 1px solid #2c2d30;
@@ -742,14 +754,6 @@ footer p {
     min-height: 2.5rem;
     padding: 0.45rem 0.65rem;
     font-size: 0.76rem;
-  }
-
-  .spoiler-notice {
-    text-align: left;
-  }
-
-  .guess-controls {
-    grid-template-columns: 1fr;
   }
 
   .character-grid {

@@ -19,6 +19,19 @@ const HOUSE_PLACEHOLDERS = Object.freeze([
   ["tully", "./assets/placeholders/tully.svg"],
   ["tyrell", "./assets/placeholders/tyrell.svg"],
 ]);
+const FAMOUS_HOUSE_ORDER = Object.freeze([
+  "stark",
+  "lannister",
+  "targaryen",
+  "baratheon",
+  "greyjoy",
+  "tyrell",
+  "martell",
+  "arryn",
+  "tully",
+  "bolton",
+  "frey",
+]);
 const elements = {
   filterList: getRequiredElement("house-filters"),
   form: getRequiredElement("name-form"),
@@ -209,12 +222,26 @@ function validateCharacter(value, groupIds) {
 }
 
 function compareGroups(left, right) {
+  const famousHouseDifference =
+    getFamousHouseRank(left.name) - getFamousHouseRank(right.name);
+  if (famousHouseDifference !== 0) {
+    return famousHouseDifference;
+  }
+
   const leftRank = left.major ? 0 : left.kind === "fallback" ? 1 : 2;
   const rightRank = right.major ? 0 : right.kind === "fallback" ? 1 : 2;
   return (
     leftRank - rightRank ||
     left.name.localeCompare(right.name, "en", { sensitivity: "base" })
   );
+}
+
+function getFamousHouseRank(name) {
+  const words = name.toLocaleLowerCase("en-US").match(/\p{L}+/gu) ?? [];
+  const index = FAMOUS_HOUSE_ORDER.findIndex((houseName) =>
+    words.includes(houseName),
+  );
+  return index === -1 ? FAMOUS_HOUSE_ORDER.length : index;
 }
 
 function groupCharacters(characters) {
@@ -584,7 +611,8 @@ function processGuess(
   elements.input.value = "";
   updateInterface();
   saveProgress();
-  elements.input.focus();
+  elements.input.focus({ preventScroll: true });
+  scrollToRevealedCharacter(newlyFoundIds[0]);
   return true;
 }
 
@@ -606,6 +634,36 @@ function revealCharacter(characterId) {
     card.classList.remove("reveal-pulse");
     requestAnimationFrame(() => card.classList.add("reveal-pulse"));
   }
+}
+
+function scrollToRevealedCharacter(characterId) {
+  const card = state.cardsByCharacterId.get(characterId)?.[0];
+  if (!card) {
+    return;
+  }
+
+  const section = card.closest(".house-section");
+  if (section instanceof HTMLDetailsElement) {
+    section.open = true;
+    if (section.hidden && typeof section.dataset.houseId === "string") {
+      state.filterHouseId = section.dataset.houseId;
+      applyHouseFilter();
+      saveProgress();
+    }
+  }
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      card.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "center",
+        inline: "nearest",
+      });
+    });
+  });
 }
 
 function updateInterface() {
