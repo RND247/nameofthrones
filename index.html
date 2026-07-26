@@ -13,6 +13,7 @@
     />
     <title>Name of Thrones</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <script src="./src/theme-init.js"></script>
     <link rel="stylesheet" href="./src/styles.css" />
     <script type="module" src="./src/app.js"></script>
   </head>
@@ -57,14 +58,6 @@
                 hidden
               ></button>
             </p>
-            <label class="spelling-helper-toggle" for="spelling-helper-toggle">
-              <input
-                id="spelling-helper-toggle"
-                type="checkbox"
-                checked
-              />
-              <span>Dictation helper</span>
-            </label>
           </div>
           <p class="form-help" id="guess-help">
             Exact full names reveal automatically.
@@ -93,6 +86,55 @@
           <button class="button button-quiet" id="reset-button" type="button">
             Reset game
           </button>
+          <div class="options-wrap">
+            <button
+              class="button button-quiet"
+              id="options-button"
+              type="button"
+              aria-controls="options-menu"
+              aria-expanded="false"
+            >
+              Options
+            </button>
+            <div
+              class="options-menu"
+              id="options-menu"
+              role="group"
+              aria-label="Game options"
+              hidden
+            >
+              <label class="option-row" for="spelling-helper-toggle">
+                <span>Dictation helper</span>
+                <input
+                  class="option-toggle"
+                  id="spelling-helper-toggle"
+                  type="checkbox"
+                  role="switch"
+                  checked
+                />
+              </label>
+              <label class="option-row" for="dark-mode-toggle">
+                <span>Dark mode</span>
+                <input
+                  class="option-toggle"
+                  id="dark-mode-toggle"
+                  type="checkbox"
+                  role="switch"
+                  checked
+                />
+              </label>
+              <label class="option-row" for="auto-scroll-toggle">
+                <span>Auto-scroll</span>
+                <input
+                  class="option-toggle"
+                  id="auto-scroll-toggle"
+                  type="checkbox"
+                  role="switch"
+                  checked
+                />
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </header>

@@ -22,11 +22,13 @@ import {
   setActiveDifficulty,
   updateLevelProgress,
 } from "./progress.js";
+import {
+  loadSettings,
+  saveSettings,
+} from "./settings.js";
 
 const DEFAULT_PORTRAIT = "./assets/placeholders/default.svg";
 const PORTRAIT_ASSET_ROOT = "./assets/";
-const SPELLING_HELPER_STORAGE_KEY =
-  "nameOfThrones:settings:spellingHelperEnabled";
 const SPELLING_SUGGESTION_DELAY_MS = 120;
 const ID_PATTERN = /^[a-z0-9][a-z0-9_-]*$/i;
 const LOCAL_PATH_PATTERN = /^[a-z0-9_./-]+$/i;
@@ -43,7 +45,9 @@ const HOUSE_PLACEHOLDERS = Object.freeze([
 ]);
 const elements = {
   activeLevelLabel: getRequiredElement("active-level-label"),
+  autoScrollToggle: getRequiredElement("auto-scroll-toggle"),
   changeLevelButton: getRequiredElement("change-level-button"),
+  darkModeToggle: getRequiredElement("dark-mode-toggle"),
   filterList: getRequiredElement("house-filters"),
   form: getRequiredElement("name-form"),
   foundCount: getRequiredElement("found-count"),
@@ -55,6 +59,8 @@ const elements = {
   levelPicker: getRequiredElement("level-picker"),
   loadingState: getRequiredElement("loading-state"),
   message: getRequiredElement("guess-message"),
+  optionsButton: getRequiredElement("options-button"),
+  optionsMenu: getRequiredElement("options-menu"),
   progress: getRequiredElement("game-progress"),
   progressLabel: getRequiredElement("progress-label"),
   resetButton: getRequiredElement("reset-button"),
@@ -67,11 +73,13 @@ const elements = {
 const state = {
   activeLevel: null,
   allGroups: [],
+  autoScrollEnabled: true,
   cardsByCharacterId: new Map(),
   characters: [],
   charactersById: new Map(),
   charactersByGroupId: new Map(),
   completedAt: null,
+  darkModeEnabled: true,
   filterHouseId: "all",
   foundIds: new Set(),
   houses: [],
@@ -97,19 +105,28 @@ elements.spellingHelperToggle.addEventListener(
   "change",
   handleSpellingHelperToggle,
 );
+elements.autoScrollToggle.addEventListener("change", handleAutoScrollToggle);
+elements.darkModeToggle.addEventListener("change", handleDarkModeToggle);
 elements.spellingSuggestion.addEventListener(
   "click",
   applySpellingSuggestion,
 );
+elements.optionsButton.addEventListener("click", toggleOptionsMenu);
 elements.changeLevelButton.addEventListener("click", () => showLevelPicker());
 elements.resetButton.addEventListener("click", handleResetClick);
+document.addEventListener("click", handleDocumentClick);
+document.addEventListener("keydown", handleDocumentKeydown);
 
 initialize();
 
 async function initialize() {
   try {
-    state.spellingHelperEnabled = loadSpellingHelperEnabled(localStorage);
-    elements.spellingHelperToggle.checked = state.spellingHelperEnabled;
+    const settings = loadSettings(localStorage);
+    state.autoScrollEnabled = settings.autoScrollEnabled;
+    state.darkModeEnabled = settings.darkModeEnabled;
+    state.spellingHelperEnabled = settings.spellingHelperEnabled;
+    syncSettingsControls();
+    applyTheme();
     const [
       housesPayload,
       charactersPayload,
@@ -300,6 +317,7 @@ function renderLevelCards() {
 }
 
 function activateLevel(levelId, saveSelection = true) {
+  setOptionsMenuOpen(false);
   const level = state.levels.find((candidate) => candidate.id === levelId);
   const sourceRoster = state.rosters.get(levelId);
   if (!level || !sourceRoster || !state.progressState) {
@@ -364,6 +382,7 @@ function activateLevel(levelId, saveSelection = true) {
 }
 
 function showLevelPicker(clearSelection = true) {
+  setOptionsMenuOpen(false);
   hideSpellingSuggestion();
   if (clearSelection && state.progressState) {
     persistActiveProgress(false);
@@ -591,23 +610,6 @@ function getGroupDescription(group) {
   return [group.region, kind].filter(Boolean).join(" · ");
 }
 
-function loadSpellingHelperEnabled(storage) {
-  try {
-    return storage.getItem(SPELLING_HELPER_STORAGE_KEY) !== "false";
-  } catch {
-    return true;
-  }
-}
-
-function saveSpellingHelperEnabled(storage, enabled) {
-  try {
-    storage.setItem(SPELLING_HELPER_STORAGE_KEY, String(enabled));
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 function handleSpellingHelperToggle() {
   state.spellingHelperEnabled = elements.spellingHelperToggle.checked;
   if (!state.spellingHelperEnabled) {
@@ -615,14 +617,66 @@ function handleSpellingHelperToggle() {
   } else {
     queueSpellingSuggestion(elements.input.value);
   }
+  persistSettings();
+}
 
+function handleAutoScrollToggle() {
+  state.autoScrollEnabled = elements.autoScrollToggle.checked;
+  persistSettings();
+}
+
+function handleDarkModeToggle() {
+  state.darkModeEnabled = elements.darkModeToggle.checked;
+  applyTheme();
+  persistSettings();
+}
+
+function syncSettingsControls() {
+  elements.autoScrollToggle.checked = state.autoScrollEnabled;
+  elements.darkModeToggle.checked = state.darkModeEnabled;
+  elements.spellingHelperToggle.checked = state.spellingHelperEnabled;
+}
+
+function applyTheme() {
+  document.documentElement.classList.toggle(
+    "light-theme",
+    !state.darkModeEnabled,
+  );
+}
+
+function persistSettings() {
+  const saved = saveSettings(localStorage, {
+    autoScrollEnabled: state.autoScrollEnabled,
+    darkModeEnabled: state.darkModeEnabled,
+    spellingHelperEnabled: state.spellingHelperEnabled,
+  });
+  if (!saved) {
+    setMessage("Options could not be saved in this browser.", "warning");
+  }
+}
+
+function toggleOptionsMenu() {
+  setOptionsMenuOpen(elements.optionsMenu.hidden);
+}
+
+function setOptionsMenuOpen(open) {
+  elements.optionsMenu.hidden = !open;
+  elements.optionsButton.setAttribute("aria-expanded", String(open));
+}
+
+function handleDocumentClick(event) {
   if (
-    !saveSpellingHelperEnabled(
-      localStorage,
-      state.spellingHelperEnabled,
-    )
+    event.target instanceof Element &&
+    !event.target.closest(".options-wrap")
   ) {
-    setMessage("The helper preference could not be saved.", "warning");
+    setOptionsMenuOpen(false);
+  }
+}
+
+function handleDocumentKeydown(event) {
+  if (event.key === "Escape" && !elements.optionsMenu.hidden) {
+    setOptionsMenuOpen(false);
+    elements.optionsButton.focus({ preventScroll: true });
   }
 }
 
@@ -672,14 +726,14 @@ function applySpellingSuggestion() {
     return;
   }
 
-  elements.input.value = state.spellingSuggestion;
+  const suggestion = state.spellingSuggestion;
+  elements.input.value = suggestion;
   skipNextEmptySubmit = false;
   hideSpellingSuggestion();
-  elements.input.focus({ preventScroll: true });
-  elements.input.setSelectionRange(
-    elements.input.value.length,
-    elements.input.value.length,
-  );
+  processGuess(suggestion, {
+    announceAlreadyFound: true,
+    announceNoMatch: true,
+  });
 }
 
 function handleGuess(event) {
@@ -819,6 +873,10 @@ function scrollToRevealedCharacter(characterId) {
       applyHouseFilter();
       persistActiveProgress();
     }
+  }
+
+  if (!state.autoScrollEnabled) {
+    return;
   }
 
   const reduceMotion = window.matchMedia(

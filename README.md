@@ -13,9 +13,13 @@ match. If one accepted alias belongs to more than one record, all matching
 records are revealed.
 
 The dictation helper is on by default. A close misspelling shows an underlined
-suggestion below the input. Selecting it replaces the current text with the
-correct spelling. The helper can be turned off, and that choice is saved in the
-browser.
+suggestion below the input. Selecting it uses the corrected spelling, reveals
+the matching card, and updates progress. The helper can be turned off, and that
+choice is saved in the browser.
+
+The **Options** menu keeps the input area clean and stores three preferences:
+the dictation helper, dark mode, and automatic scrolling to a revealed card.
+All three options are on by default.
 
 The three levels are:
 
