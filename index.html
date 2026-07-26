@@ -40,9 +40,31 @@
               enterkeyhint="done"
               placeholder="Character name"
               required
-              aria-describedby="guess-help guess-message"
+              aria-describedby="guess-help spelling-suggestion-status guess-message"
             />
             <button class="button button-primary" type="submit">Claim</button>
+          </div>
+          <div class="guess-assistance">
+            <p
+              class="spelling-suggestion-status"
+              id="spelling-suggestion-status"
+              aria-live="polite"
+            >
+              <button
+                class="spelling-suggestion"
+                id="spelling-suggestion"
+                type="button"
+                hidden
+              ></button>
+            </p>
+            <label class="spelling-helper-toggle" for="spelling-helper-toggle">
+              <input
+                id="spelling-helper-toggle"
+                type="checkbox"
+                checked
+              />
+              <span>Dictation helper</span>
+            </label>
           </div>
           <p class="form-help" id="guess-help">
             Exact full names reveal automatically.

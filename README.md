@@ -12,6 +12,11 @@ apostrophes, hyphens, and punctuation. Partial names and fuzzy guesses do not
 match. If one accepted alias belongs to more than one record, all matching
 records are revealed.
 
+The dictation helper is on by default. A close misspelling shows an underlined
+suggestion below the input. Selecting it replaces the current text with the
+correct spelling. The helper can be turned off, and that choice is saved in the
+browser.
+
 The three levels are:
 
 - **Newcomer:** exactly 40 core television characters.

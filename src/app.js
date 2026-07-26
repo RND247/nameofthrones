@@ -1,5 +1,7 @@
 import {
   buildNameIndex,
+  buildSuggestionIndex,
+  findClosestName,
   matchExactName,
 } from "./matcher.js";
 import {
@@ -23,6 +25,9 @@ import {
 
 const DEFAULT_PORTRAIT = "./assets/placeholders/default.svg";
 const PORTRAIT_ASSET_ROOT = "./assets/";
+const SPELLING_HELPER_STORAGE_KEY =
+  "nameOfThrones:settings:spellingHelperEnabled";
+const SPELLING_SUGGESTION_DELAY_MS = 120;
 const ID_PATTERN = /^[a-z0-9][a-z0-9_-]*$/i;
 const LOCAL_PATH_PATTERN = /^[a-z0-9_./-]+$/i;
 const HOUSE_PLACEHOLDERS = Object.freeze([
@@ -53,6 +58,8 @@ const elements = {
   progress: getRequiredElement("game-progress"),
   progressLabel: getRequiredElement("progress-label"),
   resetButton: getRequiredElement("reset-button"),
+  spellingHelperToggle: getRequiredElement("spelling-helper-toggle"),
+  spellingSuggestion: getRequiredElement("spelling-suggestion"),
   timer: getRequiredElement("timer"),
   totalCount: getRequiredElement("total-count"),
 };
@@ -73,15 +80,27 @@ const state = {
   progressState: null,
   rosterIdsByLevel: new Map(),
   rosters: new Map(),
+  spellingHelperEnabled: true,
+  spellingSuggestion: null,
+  suggestionIndex: [],
   startedAt: null,
   timerIntervalId: null,
 };
 
 let resetConfirmationTimeoutId = null;
 let skipNextEmptySubmit = false;
+let spellingSuggestionTimeoutId = null;
 
 elements.form.addEventListener("submit", handleGuess);
 elements.input.addEventListener("input", handleGuessInput);
+elements.spellingHelperToggle.addEventListener(
+  "change",
+  handleSpellingHelperToggle,
+);
+elements.spellingSuggestion.addEventListener(
+  "click",
+  applySpellingSuggestion,
+);
 elements.changeLevelButton.addEventListener("click", () => showLevelPicker());
 elements.resetButton.addEventListener("click", handleResetClick);
 
@@ -89,6 +108,8 @@ initialize();
 
 async function initialize() {
   try {
+    state.spellingHelperEnabled = loadSpellingHelperEnabled(localStorage);
+    elements.spellingHelperToggle.checked = state.spellingHelperEnabled;
     const [
       housesPayload,
       charactersPayload,
@@ -309,6 +330,8 @@ function activateLevel(levelId, saveSelection = true) {
   );
   state.charactersByGroupId = groupCharacters(state.characters);
   state.nameIndex = buildNameIndex(state.characters);
+  state.suggestionIndex = buildSuggestionIndex(state.characters);
+  hideSpellingSuggestion();
 
   const levelProgress = state.progressState.levels[levelId];
   state.foundIds = new Set(levelProgress.foundIds);
@@ -341,6 +364,7 @@ function activateLevel(levelId, saveSelection = true) {
 }
 
 function showLevelPicker(clearSelection = true) {
+  hideSpellingSuggestion();
   if (clearSelection && state.progressState) {
     persistActiveProgress(false);
     state.progressState = setActiveDifficulty(
@@ -567,6 +591,97 @@ function getGroupDescription(group) {
   return [group.region, kind].filter(Boolean).join(" · ");
 }
 
+function loadSpellingHelperEnabled(storage) {
+  try {
+    return storage.getItem(SPELLING_HELPER_STORAGE_KEY) !== "false";
+  } catch {
+    return true;
+  }
+}
+
+function saveSpellingHelperEnabled(storage, enabled) {
+  try {
+    storage.setItem(SPELLING_HELPER_STORAGE_KEY, String(enabled));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function handleSpellingHelperToggle() {
+  state.spellingHelperEnabled = elements.spellingHelperToggle.checked;
+  if (!state.spellingHelperEnabled) {
+    hideSpellingSuggestion();
+  } else {
+    queueSpellingSuggestion(elements.input.value);
+  }
+
+  if (
+    !saveSpellingHelperEnabled(
+      localStorage,
+      state.spellingHelperEnabled,
+    )
+  ) {
+    setMessage("The helper preference could not be saved.", "warning");
+  }
+}
+
+function queueSpellingSuggestion(guess) {
+  hideSpellingSuggestion();
+  if (!state.spellingHelperEnabled || !guess.trim()) {
+    return;
+  }
+
+  spellingSuggestionTimeoutId = window.setTimeout(() => {
+    spellingSuggestionTimeoutId = null;
+    if (elements.input.value !== guess) {
+      return;
+    }
+    const suggestion = findClosestName(guess, state.suggestionIndex);
+    if (suggestion === null) {
+      hideSpellingSuggestion();
+      return;
+    }
+    showSpellingSuggestion(suggestion);
+  }, SPELLING_SUGGESTION_DELAY_MS);
+}
+
+function showSpellingSuggestion(suggestion) {
+  state.spellingSuggestion = suggestion;
+  elements.spellingSuggestion.textContent = `Did you mean “${suggestion}”?`;
+  elements.spellingSuggestion.setAttribute(
+    "aria-label",
+    `Use suggested spelling: ${suggestion}`,
+  );
+  elements.spellingSuggestion.hidden = false;
+}
+
+function hideSpellingSuggestion() {
+  if (spellingSuggestionTimeoutId !== null) {
+    window.clearTimeout(spellingSuggestionTimeoutId);
+    spellingSuggestionTimeoutId = null;
+  }
+  state.spellingSuggestion = null;
+  elements.spellingSuggestion.hidden = true;
+  elements.spellingSuggestion.textContent = "";
+  elements.spellingSuggestion.removeAttribute("aria-label");
+}
+
+function applySpellingSuggestion() {
+  if (state.spellingSuggestion === null) {
+    return;
+  }
+
+  elements.input.value = state.spellingSuggestion;
+  skipNextEmptySubmit = false;
+  hideSpellingSuggestion();
+  elements.input.focus({ preventScroll: true });
+  elements.input.setSelectionRange(
+    elements.input.value.length,
+    elements.input.value.length,
+  );
+}
+
 function handleGuess(event) {
   event.preventDefault();
   if (skipNextEmptySubmit && !elements.input.value.trim()) {
@@ -585,6 +700,7 @@ function handleGuessInput() {
   skipNextEmptySubmit = false;
   const guess = elements.input.value;
   if (!guess.trim()) {
+    hideSpellingSuggestion();
     return;
   }
 
@@ -595,8 +711,10 @@ function handleGuessInput() {
 
   const matchedIds = matchExactName(guess, state.nameIndex);
   if (matchedIds.length === 0) {
+    queueSpellingSuggestion(guess);
     return;
   }
+  hideSpellingSuggestion();
 
   if (
     processGuess(guess, {
@@ -636,6 +754,7 @@ function processGuess(
     }
     return false;
   }
+  hideSpellingSuggestion();
 
   if (newlyFoundIds.length === 0) {
     if (announceAlreadyFound) {
@@ -824,6 +943,7 @@ function handleResetClick() {
   state.startedAt = null;
   state.completedAt = null;
   state.filterHouseId = "all";
+  hideSpellingSuggestion();
   saveProgressState(localStorage, state.progressState);
 
   for (const character of state.characters) {

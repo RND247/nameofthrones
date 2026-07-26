@@ -3,6 +3,8 @@ import test from "node:test";
 
 import {
   buildNameIndex,
+  buildSuggestionIndex,
+  findClosestName,
   matchExactName,
   normalizeName,
 } from "../src/matcher.js";
@@ -108,6 +110,48 @@ test("matching supports normalized apostrophes, hyphens, and punctuation", () =>
   assert.deepEqual(matchExactName("The Red Viper!", index), [
     "oberyn-martell",
   ]);
+});
+
+test("spelling suggestions correct close full-name guesses", () => {
+  const suggestions = buildSuggestionIndex([
+    ...characters,
+    {
+      id: "daenerys-targaryen",
+      name: "Daenerys Targaryen",
+      acceptedNames: ["Daenerys Stormborn"],
+    },
+  ]);
+
+  assert.equal(
+    findClosestName("daynerys targarian", suggestions),
+    "Daenerys Targaryen",
+  );
+  assert.equal(findClosestName("Arya Strak", suggestions), "Arya Stark");
+  assert.equal(
+    findClosestName("Daenerys Stormbrn", suggestions),
+    "Daenerys Stormborn",
+  );
+});
+
+test("spelling suggestions do not complete partial or unrelated names", () => {
+  const suggestions = buildSuggestionIndex(characters);
+
+  assert.equal(findClosestName("Arya Stark", suggestions), null);
+  assert.equal(findClosestName("Arya", suggestions), null);
+  assert.equal(findClosestName("Arya Star", suggestions), null);
+  assert.equal(findClosestName("Sand", suggestions), null);
+  assert.equal(findClosestName("Completely Different", suggestions), null);
+});
+
+test("spelling suggestions fail closed for ambiguous and invalid input", () => {
+  const suggestions = buildSuggestionIndex([
+    { id: "one", name: "Mira Reed", acceptedNames: [] },
+    { id: "two", name: "Myra Reed", acceptedNames: [] },
+  ]);
+
+  assert.equal(findClosestName("Mera Reed", suggestions), null);
+  assert.equal(findClosestName("Arya Strak", null), null);
+  assert.deepEqual(buildSuggestionIndex(null), []);
 });
 
 test("invalid collections and index values fail closed", () => {
