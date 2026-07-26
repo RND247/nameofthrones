@@ -585,7 +585,8 @@ h1 {
 }
 
 .guess-form {
-  width: min(42rem, calc(100% - 2rem));
+  grid-area: guess;
+  width: 100%;
   margin: 0;
   text-align: left;
 }
@@ -601,16 +602,25 @@ h1 {
 }
 
 .guess-pane-content {
-  width: min(42rem, calc(100% - 2rem));
+  display: grid;
+  grid-template-areas: "stats guess progress options";
+  grid-template-columns: 9.5rem minmax(24rem, 42rem) minmax(10.5rem, 13rem) auto;
+  gap: clamp(0.75rem, 2vw, 2rem);
+  align-items: center;
+  width: min(75rem, calc(100% - 2rem));
   margin: 0 auto;
 }
 
 .guess-pane-status {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 2.35rem;
-  margin-bottom: 0.4rem;
+  display: contents;
+}
+
+.guess-pane-status .game-stats {
+  grid-area: stats;
+}
+
+.guess-pane-status .options-wrap {
+  grid-area: options;
 }
 
 .guess-form > label,
@@ -706,8 +716,9 @@ h1 {
 }
 
 .progress-panel {
+  grid-area: progress;
   width: 100%;
-  margin: 0 0 0.5rem;
+  margin: 0;
 }
 
 .progress-copy {
@@ -1141,6 +1152,38 @@ footer p {
 }
 
 @media (max-width: 46rem) {
+  .guess-pane-content {
+    grid-template-areas:
+      "status"
+      "progress"
+      "guess";
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    width: min(42rem, calc(100% - 2rem));
+  }
+
+  .guess-pane-status {
+    grid-area: status;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 2.35rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .guess-pane-status .game-stats,
+  .guess-pane-status .options-wrap {
+    grid-area: auto;
+  }
+
+  .progress-panel {
+    margin-bottom: 0.5rem;
+  }
+
+  .guess-form {
+    width: 100%;
+  }
+
   .header-row {
     grid-template-areas:
       "wordmark actions"
