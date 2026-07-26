@@ -10,7 +10,8 @@ A guess must match a full character name or a listed alias. Matching is exact
 after normalizing case, outside and repeated spaces, common accent marks,
 apostrophes, hyphens, and punctuation. Partial names and fuzzy guesses do not
 match. If one accepted alias belongs to more than one record, all matching
-records are revealed.
+records are revealed. Selecting a revealed card opens that character on
+**A Wiki of Ice and Fire** in a new tab.
 
 The dictation helper is on by default. A close misspelling shows an underlined
 suggestion below the input. Selecting it uses the corrected spelling, reveals

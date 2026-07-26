@@ -26,6 +26,7 @@ import {
   loadSettings,
   saveSettings,
 } from "./settings.js";
+import { buildWikiUrl } from "./wiki.js";
 
 const DEFAULT_PORTRAIT = "./assets/placeholders/default.svg";
 const PORTRAIT_ASSET_ROOT = "./assets/";
@@ -560,7 +561,20 @@ function populateRevealedCard(card, character, house) {
   const allegiance = document.createElement("p");
   allegiance.textContent = house.name;
   details.append(name, allegiance);
-  card.append(portrait, details);
+
+  const wikiUrl = buildWikiUrl(character);
+  const wikiLink = document.createElement("a");
+  wikiLink.className = "character-card-link";
+  wikiLink.href = wikiUrl ?? "https://awoiaf.westeros.org/";
+  wikiLink.target = "_blank";
+  wikiLink.rel = "noopener noreferrer";
+  wikiLink.title = `Open ${character.name} on A Wiki of Ice and Fire`;
+  wikiLink.setAttribute(
+    "aria-label",
+    `Read about ${character.name} on A Wiki of Ice and Fire`,
+  );
+
+  card.append(portrait, details, wikiLink);
 }
 
 function getPortraitCandidates(character, house) {
