@@ -6,8 +6,21 @@ import {
   collapseLocationGroups,
   remapCharacterGroups,
 } from "./groups.js";
+import {
+  applyCharacterOverrides,
+  buildLevelRosters,
+  combineCharacters,
+  validateCharacterPayload,
+  validateLevelPayload,
+} from "./levels.js";
+import {
+  loadProgressState,
+  resetLevelProgress,
+  saveProgressState,
+  setActiveDifficulty,
+  updateLevelProgress,
+} from "./progress.js";
 
-const STORAGE_KEY = "nameOfThrones:v1:game";
 const DEFAULT_PORTRAIT = "./assets/placeholders/default.svg";
 const PORTRAIT_ASSET_ROOT = "./assets/";
 const ID_PATTERN = /^[a-z0-9][a-z0-9_-]*$/i;
@@ -24,11 +37,17 @@ const HOUSE_PLACEHOLDERS = Object.freeze([
   ["tyrell", "./assets/placeholders/tyrell.svg"],
 ]);
 const elements = {
+  activeLevelLabel: getRequiredElement("active-level-label"),
+  changeLevelButton: getRequiredElement("change-level-button"),
   filterList: getRequiredElement("house-filters"),
   form: getRequiredElement("name-form"),
   foundCount: getRequiredElement("found-count"),
+  gameHeader: getRequiredElement("game-header"),
+  gameView: getRequiredElement("game-view"),
   houseList: getRequiredElement("house-list"),
   input: getRequiredElement("name-input"),
+  levelCards: getRequiredElement("level-cards"),
+  levelPicker: getRequiredElement("level-picker"),
   loadingState: getRequiredElement("loading-state"),
   message: getRequiredElement("guess-message"),
   progress: getRequiredElement("game-progress"),
@@ -39,6 +58,8 @@ const elements = {
 };
 
 const state = {
+  activeLevel: null,
+  allGroups: [],
   cardsByCharacterId: new Map(),
   characters: [],
   charactersById: new Map(),
@@ -47,7 +68,11 @@ const state = {
   filterHouseId: "all",
   foundIds: new Set(),
   houses: [],
+  levels: [],
   nameIndex: new Map(),
+  progressState: null,
+  rosterIdsByLevel: new Map(),
+  rosters: new Map(),
   startedAt: null,
   timerIntervalId: null,
 };
@@ -57,15 +82,25 @@ let skipNextEmptySubmit = false;
 
 elements.form.addEventListener("submit", handleGuess);
 elements.input.addEventListener("input", handleGuessInput);
+elements.changeLevelButton.addEventListener("click", () => showLevelPicker());
 elements.resetButton.addEventListener("click", handleResetClick);
 
 initialize();
 
 async function initialize() {
   try {
-    const [housesPayload, charactersPayload] = await Promise.all([
+    const [
+      housesPayload,
+      charactersPayload,
+      levelsPayload,
+      showCharactersPayload,
+      overridesPayload,
+    ] = await Promise.all([
       loadJson("./data/houses.json"),
       loadJson("./data/characters.json"),
+      loadJson("./data/levels.json"),
+      loadJson("./data/show-characters.json"),
+      loadJson("./data/character-overrides.json"),
     ]);
     const allGroups = uniqueById(
       extractCollection(housesPayload, "groups")
@@ -73,41 +108,61 @@ async function initialize() {
         .filter(Boolean),
     );
     const groupIds = new Set(allGroups.map((group) => group.id));
-    const sourceCharacters = uniqueById(
-      extractCollection(charactersPayload, "characters")
-        .map((character) => validateCharacter(character, groupIds))
-        .filter(Boolean),
+    const existingCharacters = validateCharacterPayload(
+      charactersPayload,
+      groupIds,
     );
-    const populatedGroupIds = new Set(
-      sourceCharacters.map((character) => character.primaryHouseId),
+    const showCharacters = validateCharacterPayload(
+      showCharactersPayload,
+      groupIds,
     );
-    const collapsedGroups = collapseLocationGroups(
-      allGroups.filter((group) => populatedGroupIds.has(group.id)),
+    const levels = validateLevelPayload(levelsPayload);
+    const characters = applyCharacterOverrides(
+      combineCharacters(existingCharacters, showCharacters),
+      overridesPayload,
     );
-    const groups = collapsedGroups.groups;
-    const characters = remapCharacterGroups(
-      sourceCharacters,
-      collapsedGroups.groupIdBySourceId,
-    );
+    const rosters = buildLevelRosters(levels, characters);
 
-    if (groups.length === 0 || characters.length === 0) {
+    if (
+      allGroups.length === 0 ||
+      existingCharacters.length === 0 ||
+      levels.length === 0 ||
+      characters.length === 0 ||
+      levels.some((level) => {
+        const roster = rosters.get(level.id) ?? [];
+        return level.includeAll
+          ? roster.length !== characters.length
+          : roster.length !== level.targetCount;
+      })
+    ) {
       throw new Error("The archive data is empty or invalid.");
     }
 
-    state.houses = groups;
-    state.characters = characters;
-    state.charactersById = new Map(
-      characters.map((character) => [character.id, character]),
+    state.allGroups = allGroups;
+    state.levels = levels;
+    state.rosters = rosters;
+    state.rosterIdsByLevel = new Map(
+      [...rosters].map(([levelId, roster]) => [
+        levelId,
+        new Set(roster.map((character) => character.id)),
+      ]),
     );
-    state.charactersByGroupId = groupCharacters(characters);
-    state.nameIndex = buildNameIndex(characters);
+    const expertLevel = levels.find((level) => level.includeAll);
+    state.progressState = loadProgressState(
+      localStorage,
+      levels.map((level) => level.id),
+      state.rosterIdsByLevel,
+      expertLevel?.id ?? "",
+    );
 
-    restoreProgress();
-    renderFilters();
-    renderHouses();
-    updateInterface();
+    renderLevelCards();
     startTimerUpdates();
     elements.loadingState.hidden = true;
+    if (state.progressState.activeDifficulty !== null) {
+      activateLevel(state.progressState.activeDifficulty, false);
+    } else {
+      showLevelPicker(false);
+    }
   } catch {
     elements.loadingState.textContent =
       "The archives could not be opened. Please refresh and try again.";
@@ -177,46 +232,6 @@ function validateGroup(value) {
   });
 }
 
-function validateCharacter(value, groupIds) {
-  if (
-    value === null ||
-    typeof value !== "object" ||
-    typeof value.id !== "string" ||
-    !ID_PATTERN.test(value.id) ||
-    typeof value.name !== "string" ||
-    value.name.trim().length === 0 ||
-    !Array.isArray(value.accepted_names) ||
-    !value.accepted_names.every((name) => typeof name === "string") ||
-    typeof value.group_id !== "string" ||
-    !groupIds.has(value.group_id) ||
-    !Array.isArray(value.house_ids) ||
-    !value.house_ids.every((id) => typeof id === "string") ||
-    !Array.isArray(value.book_ids) ||
-    !value.book_ids.every((id) => typeof id === "string") ||
-    (value.portrait_path !== null &&
-      typeof value.portrait_path !== "string") ||
-    (value.source !== null && typeof value.source !== "object")
-  ) {
-    return null;
-  }
-
-  return Object.freeze({
-    id: value.id,
-    name: value.name.trim(),
-    acceptedNames: Object.freeze([...value.accepted_names]),
-    primaryHouseId: value.group_id,
-    houseIds: Object.freeze(
-      value.house_ids.filter((houseId) => groupIds.has(houseId)),
-    ),
-    bookIds: Object.freeze([...value.book_ids]),
-    portraitPath:
-      typeof value.portrait_path === "string"
-        ? value.portrait_path.trim()
-        : null,
-    source: value.source,
-  });
-}
-
 function groupCharacters(characters) {
   const charactersByGroupId = new Map();
 
@@ -230,81 +245,141 @@ function groupCharacters(characters) {
   return charactersByGroupId;
 }
 
-function restoreProgress() {
-  let savedState;
+function renderLevelCards() {
+  elements.levelCards.replaceChildren();
 
-  try {
-    savedState = JSON.parse(readProgressStorage() ?? "null");
-  } catch {
-    clearProgressStorage();
-    return;
-  }
+  for (const level of state.levels) {
+    const roster = state.rosters.get(level.id) ?? [];
+    const levelProgress = state.progressState.levels[level.id];
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "level-card";
+    card.addEventListener("click", () => activateLevel(level.id));
 
-  if (savedState === null || typeof savedState !== "object") {
-    return;
-  }
+    const name = document.createElement("strong");
+    name.className = "level-card-name";
+    name.textContent = level.name;
 
-  if (Array.isArray(savedState.foundIds)) {
-    state.foundIds = new Set(
-      savedState.foundIds.filter((id) => state.charactersById.has(id)),
-    );
-  }
+    const count = document.createElement("span");
+    count.className = "level-card-count";
+    count.textContent = `${levelProgress.foundIds.length} of ${roster.length} found`;
 
-  if (Number.isFinite(savedState.startedAt) && savedState.startedAt > 0) {
-    state.startedAt = savedState.startedAt;
-  }
+    const description = document.createElement("span");
+    description.className = "level-card-description";
+    description.textContent = level.description;
 
-  if (
-    Number.isFinite(savedState.completedAt) &&
-    savedState.completedAt >= state.startedAt
-  ) {
-    state.completedAt = savedState.completedAt;
-  }
+    const action = document.createElement("span");
+    action.className = "level-card-action";
+    action.textContent =
+      levelProgress.foundIds.length > 0 ? "Continue level" : "Start level";
 
-  if (
-    savedState.filterHouseId === "all" ||
-    state.houses.some((house) => house.id === savedState.filterHouseId)
-  ) {
-    state.filterHouseId = savedState.filterHouseId;
-  }
-
-  if (
-    state.foundIds.size !== state.characters.length &&
-    state.completedAt !== null
-  ) {
-    state.completedAt = null;
+    card.append(name, count, description, action);
+    elements.levelCards.append(card);
   }
 }
 
-function saveProgress() {
-  const savedState = {
-    completedAt: state.completedAt,
-    filterHouseId: state.filterHouseId,
-    foundIds: [...state.foundIds],
-    startedAt: state.startedAt,
-  };
+function activateLevel(levelId, saveSelection = true) {
+  const level = state.levels.find((candidate) => candidate.id === levelId);
+  const sourceRoster = state.rosters.get(levelId);
+  if (!level || !sourceRoster || !state.progressState) {
+    showLevelPicker(false);
+    return;
+  }
 
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedState));
-  } catch {
+  state.activeLevel = level;
+  state.progressState = setActiveDifficulty(
+    state.progressState,
+    levelId,
+    state.levels.map((candidate) => candidate.id),
+  );
+
+  const populatedGroupIds = new Set(
+    sourceRoster.map((character) => character.primaryHouseId),
+  );
+  const collapsedGroups = collapseLocationGroups(
+    state.allGroups.filter((group) => populatedGroupIds.has(group.id)),
+  );
+  state.houses = collapsedGroups.groups;
+  state.characters = remapCharacterGroups(
+    sourceRoster,
+    collapsedGroups.groupIdBySourceId,
+  );
+  state.charactersById = new Map(
+    state.characters.map((character) => [character.id, character]),
+  );
+  state.charactersByGroupId = groupCharacters(state.characters);
+  state.nameIndex = buildNameIndex(state.characters);
+
+  const levelProgress = state.progressState.levels[levelId];
+  state.foundIds = new Set(levelProgress.foundIds);
+  state.startedAt = levelProgress.startedAt;
+  state.completedAt =
+    state.foundIds.size === state.characters.length
+      ? levelProgress.completedAt
+      : null;
+  state.filterHouseId =
+    levelProgress.filterHouseId === "all" ||
+    state.houses.some((house) => house.id === levelProgress.filterHouseId)
+      ? levelProgress.filterHouseId
+      : "all";
+
+  renderFilters();
+  renderHouses();
+  setMessage("", "");
+  updateInterface();
+  elements.activeLevelLabel.textContent = level.name;
+  elements.levelPicker.hidden = true;
+  elements.gameHeader.hidden = false;
+  elements.gameView.hidden = false;
+  cancelResetConfirmation();
+
+  if (saveSelection) {
+    persistActiveProgress();
+  }
+  elements.input.value = "";
+  elements.input.focus({ preventScroll: true });
+}
+
+function showLevelPicker(clearSelection = true) {
+  if (clearSelection && state.progressState) {
+    persistActiveProgress(false);
+    state.progressState = setActiveDifficulty(
+      state.progressState,
+      null,
+      state.levels.map((level) => level.id),
+    );
+    saveProgressState(localStorage, state.progressState);
+  }
+
+  state.activeLevel = null;
+  elements.gameHeader.hidden = true;
+  elements.gameView.hidden = true;
+  elements.levelPicker.hidden = false;
+  renderLevelCards();
+  elements.levelPicker.focus({ preventScroll: true });
+}
+
+function persistActiveProgress(showWarning = true) {
+  if (!state.activeLevel || !state.progressState) {
+    return true;
+  }
+
+  state.progressState = updateLevelProgress(
+    state.progressState,
+    state.activeLevel.id,
+    {
+      foundIds: [...state.foundIds],
+      startedAt: state.startedAt,
+      completedAt: state.completedAt,
+      filterHouseId: state.filterHouseId,
+    },
+    state.rosterIdsByLevel.get(state.activeLevel.id) ?? new Set(),
+  );
+  const saved = saveProgressState(localStorage, state.progressState);
+  if (!saved && showWarning) {
     setMessage("Progress could not be saved in this browser.", "warning");
   }
-}
-
-function readProgressStorage() {
-  try {
-    return localStorage.getItem(STORAGE_KEY);
-  } catch {
-    return null;
-  }
-}
-
-function clearProgressStorage() {
-  try {
-    localStorage.removeItem(STORAGE_KEY);
-  } catch {
-    // The game still works when browser storage is blocked.
-  }
+  return saved;
 }
 
 function renderFilters() {
@@ -329,7 +404,7 @@ function createFilterButton(houseId, label) {
   button.addEventListener("click", () => {
     state.filterHouseId = houseId;
     applyHouseFilter();
-    saveProgress();
+    persistActiveProgress();
   });
   return button;
 }
@@ -515,6 +590,7 @@ function handleGuessInput() {
 
   if (state.startedAt === null) {
     state.startedAt = Date.now();
+    persistActiveProgress();
   }
 
   const matchedIds = matchExactName(guess, state.nameIndex);
@@ -547,6 +623,7 @@ function processGuess(
 
   if (state.startedAt === null) {
     state.startedAt = Date.now();
+    persistActiveProgress();
   }
 
   const exactMatchIds = matchedIds ?? matchExactName(guess, state.nameIndex);
@@ -555,7 +632,7 @@ function processGuess(
   if (exactMatchIds.length === 0) {
     if (announceNoMatch) {
       setMessage("No exact match. Check the full name and try again.", "error");
-      saveProgress();
+      persistActiveProgress();
     }
     return false;
   }
@@ -583,7 +660,7 @@ function processGuess(
   setMessage(`Revealed: ${revealedNames.join(", ")}.`, "success");
   elements.input.value = "";
   updateInterface();
-  saveProgress();
+  persistActiveProgress();
   elements.input.focus({ preventScroll: true });
   scrollToRevealedCharacter(newlyFoundIds[0]);
   return true;
@@ -621,7 +698,7 @@ function scrollToRevealedCharacter(characterId) {
     if (section.hidden && typeof section.dataset.houseId === "string") {
       state.filterHouseId = section.dataset.houseId;
       applyHouseFilter();
-      saveProgress();
+      persistActiveProgress();
     }
   }
 
@@ -735,10 +812,19 @@ function handleResetClick() {
   }
   cancelResetConfirmation();
 
+  if (!state.activeLevel || !state.progressState) {
+    return;
+  }
+
+  state.progressState = resetLevelProgress(
+    state.progressState,
+    state.activeLevel.id,
+  );
   state.foundIds.clear();
   state.startedAt = null;
   state.completedAt = null;
-  clearProgressStorage();
+  state.filterHouseId = "all";
+  saveProgressState(localStorage, state.progressState);
 
   for (const character of state.characters) {
     const house = state.houses.find(
@@ -752,6 +838,7 @@ function handleResetClick() {
     }
   }
 
+  applyHouseFilter();
   updateInterface();
   setMessage("Game reset. The names are hidden again.", "success");
   elements.input.value = "";
@@ -759,6 +846,9 @@ function handleResetClick() {
 }
 
 function cancelResetConfirmation() {
+  if (resetConfirmationTimeoutId !== null) {
+    window.clearTimeout(resetConfirmationTimeoutId);
+  }
   elements.resetButton.dataset.confirming = "false";
   elements.resetButton.textContent = "Reset game";
   resetConfirmationTimeoutId = null;

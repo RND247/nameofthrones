@@ -17,9 +17,9 @@
     <script type="module" src="./src/app.js"></script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to the game</a>
+    <a class="skip-link" href="#main-content">Skip to the main content</a>
 
-    <header class="site-header" aria-label="Game status">
+    <header class="site-header" id="game-header" aria-label="Game status" hidden>
       <div class="header-row">
         <a class="wordmark" href="#main-content" aria-label="Name of Thrones home">
           <span aria-hidden="true">♜</span>
@@ -61,56 +61,81 @@
           </div>
         </dl>
 
-        <button class="button button-quiet" id="reset-button" type="button">
-          Reset game
-        </button>
+        <div class="header-actions">
+          <p class="active-level">
+            Level: <strong id="active-level-label"></strong>
+          </p>
+          <button class="button button-quiet" id="change-level-button" type="button">
+            Change level
+          </button>
+          <button class="button button-quiet" id="reset-button" type="button">
+            Reset game
+          </button>
+        </div>
       </div>
     </header>
 
     <main id="main-content" tabindex="-1">
-      <section class="hero" aria-labelledby="game-heading">
-        <p class="eyebrow">The realm remembers</p>
-        <h1 id="game-heading">How many names can you claim?</h1>
+      <section
+        class="level-picker"
+        id="level-picker"
+        aria-labelledby="level-picker-heading"
+        tabindex="-1"
+      >
+        <p class="eyebrow">Choose your challenge</p>
+        <h1 id="level-picker-heading">How well do you know the realm?</h1>
         <p class="intro">
-          Enter a character's full name. Only an exact name or accepted alias
-          will reveal the card.
+          Each level keeps its own progress and timer. You can change levels at
+          any time.
         </p>
-        <p class="spoiler-notice">
-          Spoiler notice: revealed names and house details may spoil the books
-          and television series.
+        <div class="level-cards" id="level-cards"></div>
+        <p class="state-message" id="loading-state" role="status">
+          Preparing the challenges…
         </p>
-
-        <div class="progress-panel">
-          <div class="progress-copy">
-            <span>Realm discovered</span>
-            <output id="progress-label" for="game-progress">0%</output>
-          </div>
-          <progress id="game-progress" value="0" max="1">0%</progress>
-        </div>
       </section>
 
-      <section class="realm" aria-labelledby="realm-heading">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Great houses</p>
-            <h2 id="realm-heading">The houses of the realm</h2>
-          </div>
-          <div class="filter-panel">
-            <span id="filter-label">Show house</span>
-            <div
-              class="house-filters"
-              id="house-filters"
-              role="group"
-              aria-labelledby="filter-label"
-            ></div>
-          </div>
-        </div>
+      <div id="game-view" hidden>
+        <section class="hero" aria-labelledby="game-heading">
+          <p class="eyebrow">The realm remembers</p>
+          <h1 id="game-heading">How many names can you claim?</h1>
+          <p class="intro">
+            Enter a character's full name. Only an exact name or accepted alias
+            will reveal the card.
+          </p>
+          <p class="spoiler-notice">
+            Spoiler notice: revealed names and house details may spoil the books
+            and television series.
+          </p>
 
-        <div id="loading-state" class="state-message" role="status">
-          Opening the archives…
-        </div>
-        <div id="house-list" class="house-list"></div>
-      </section>
+          <div class="progress-panel">
+            <div class="progress-copy">
+              <span>Realm discovered</span>
+              <output id="progress-label" for="game-progress">0%</output>
+            </div>
+            <progress id="game-progress" value="0" max="1">0%</progress>
+          </div>
+        </section>
+
+        <section class="realm" aria-labelledby="realm-heading">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Great houses</p>
+              <h2 id="realm-heading">The houses of the realm</h2>
+            </div>
+            <div class="filter-panel">
+              <span id="filter-label">Show house</span>
+              <div
+                class="house-filters"
+                id="house-filters"
+                role="group"
+                aria-labelledby="filter-label"
+              ></div>
+            </div>
+          </div>
+
+          <div id="house-list" class="house-list"></div>
+        </section>
+      </div>
     </main>
 
     <footer>

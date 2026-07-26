@@ -22,6 +22,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html {
   min-width: 20rem;
   scroll-behavior: smooth;
@@ -91,8 +95,8 @@ a {
 
 .header-row {
   display: grid;
-  grid-template-areas: "wordmark guess stats reset";
-  grid-template-columns: auto minmax(18rem, 1fr) auto auto;
+  grid-template-areas: "wordmark guess stats actions";
+  grid-template-columns: auto minmax(16rem, 1fr) auto auto;
   gap: 1rem;
   align-items: center;
   width: min(75rem, calc(100% - 2rem));
@@ -204,10 +208,6 @@ a {
   border-color: var(--line);
 }
 
-.header-row > .button-quiet {
-  grid-area: reset;
-}
-
 .button-quiet:hover,
 .button-quiet[data-confirming="true"] {
   color: var(--gold-bright);
@@ -217,6 +217,122 @@ a {
 
 main {
   display: block;
+}
+
+.level-picker {
+  display: grid;
+  min-height: calc(100vh - 5rem);
+  align-content: center;
+  justify-items: center;
+  width: min(75rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 7rem) 0;
+  text-align: center;
+}
+
+.level-picker h1 {
+  max-width: 19ch;
+}
+
+.level-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.level-card {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 0.8rem;
+  min-height: 19rem;
+  padding: clamp(1.35rem, 3vw, 2.25rem);
+  color: var(--ink);
+  background:
+    linear-gradient(145deg, rgb(35 37 42 / 96%), rgb(20 22 25 / 98%)),
+    var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 0.35rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.level-card:hover {
+  border-color: var(--gold);
+  box-shadow:
+    var(--shadow),
+    0 0 0 1px rgb(209 173 99 / 20%);
+  transform: translateY(-4px);
+}
+
+.level-card-name {
+  color: var(--gold-bright);
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+  font-weight: 500;
+}
+
+.level-card-count {
+  color: var(--success);
+  font-family: system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.level-card-description {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.level-card-action {
+  padding-top: 0.9rem;
+  color: var(--gold-bright);
+  border-top: 1px solid var(--line);
+  font-family: system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.level-picker > .state-message {
+  width: min(32rem, 100%);
+  margin-top: 1.5rem;
+}
+
+.header-actions {
+  grid-area: actions;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.active-level {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  font-size: 0.68rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.active-level strong {
+  color: var(--gold-bright);
+  letter-spacing: 0.08em;
+}
+
+.header-actions .button {
+  min-height: 2.35rem;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.74rem;
 }
 
 .hero,
@@ -714,7 +830,7 @@ footer p {
 @media (max-width: 46rem) {
   .header-row {
     grid-template-areas:
-      "wordmark reset"
+      "wordmark actions"
       "guess guess"
       "stats stats";
     grid-template-columns: minmax(0, 1fr) auto;
@@ -732,6 +848,15 @@ footer p {
     justify-self: end;
   }
 
+  .level-cards {
+    grid-template-columns: 1fr;
+    width: min(34rem, 100%);
+  }
+
+  .level-card {
+    min-height: 14rem;
+  }
+
   .section-heading {
     display: grid;
     align-items: start;
@@ -744,6 +869,7 @@ footer p {
 
 @media (max-width: 32rem) {
   .header-row,
+  .level-picker,
   .hero,
   .realm {
     width: min(100% - 1.25rem, 75rem);
@@ -751,12 +877,6 @@ footer p {
 
   .wordmark span:last-child {
     max-width: 8rem;
-  }
-
-  .button-quiet {
-    min-height: 2.5rem;
-    padding: 0.45rem 0.65rem;
-    font-size: 0.76rem;
   }
 
   .character-grid {
@@ -793,6 +913,7 @@ footer p {
 @media (forced-colors: active) {
   .button,
   .filter-button,
+  .level-card,
   .character-card,
   .house-section,
   .guess-controls input {

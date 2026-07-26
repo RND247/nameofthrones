@@ -15,6 +15,7 @@ import re
 import sys
 import tempfile
 import time
+import unicodedata
 from datetime import datetime, timezone
 from io import BytesIO
 from pathlib import Path
@@ -41,6 +42,8 @@ LOGGER = logging.getLogger("portrait-pipeline")
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CHARACTERS_PATH = PROJECT_ROOT / "data" / "characters.json"
+SHOW_CHARACTERS_PATH = PROJECT_ROOT / "data" / "show-characters.json"
+OVERRIDES_PATH = PROJECT_ROOT / "data" / "character-overrides.json"
 MANIFEST_PATH = PROJECT_ROOT / "data" / "portrait-manifest.json"
 PORTRAITS_DIR = PROJECT_ROOT / "assets" / "portraits"
 
@@ -89,6 +92,15 @@ TRAIT_FIELDS = (
     ("clothing", "clothing"),
 )
 SOURCE_FIELDS = ("sourceLinks", "source_links", "sources", "source")
+SAFE_ID_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+OVERRIDE_REQUIRED_KEYS = {"id", "source_url"}
+OVERRIDE_OPTIONAL_KEYS = {"accepted_names_add", "name_override"}
+ALLOWED_OVERRIDE_SOURCE_HOSTS = {
+    "anapioficeandfire.com",
+    "en.wikipedia.org",
+    "gameofthrones.fandom.com",
+    "www.wikidata.org",
+}
 
 
 class PipelineError(RuntimeError):
@@ -242,6 +254,144 @@ def read_characters(path: Path = CHARACTERS_PATH) -> list[dict[str, Any]]:
     return raw
 
 
+def _is_clean_override_text(value: Any, maximum: int) -> bool:
+    return (
+        isinstance(value, str)
+        and bool(value)
+        and len(value) <= maximum
+        and value == " ".join(value.split())
+        and "<" not in value
+        and ">" not in value
+        and not re.search(r"[\x00-\x1f\x7f]", value)
+    )
+
+
+def _is_safe_override_url(value: Any) -> bool:
+    if (
+        not isinstance(value, str)
+        or not value
+        or len(value) > 2_048
+        or value != value.strip()
+        or "\\" in value
+        or "<" in value
+        or ">" in value
+        or any(character.isspace() for character in value)
+    ):
+        return False
+    try:
+        parsed = urlsplit(value)
+        hostname = parsed.hostname
+        port = parsed.port
+    except ValueError:
+        return False
+    return (
+        parsed.scheme == "https"
+        and hostname in ALLOWED_OVERRIDE_SOURCE_HOSTS
+        and port is None
+        and not parsed.username
+        and not parsed.password
+        and not parsed.fragment
+    )
+
+
+def read_character_overrides(
+    path: Path = OVERRIDES_PATH,
+) -> list[dict[str, Any]]:
+    try:
+        document = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError as exc:
+        raise PipelineError(f"Character override file is missing: {path}") from exc
+    except (OSError, json.JSONDecodeError) as exc:
+        raise PipelineError("Character overrides could not be read as valid JSON.") from exc
+    if (
+        not isinstance(document, dict)
+        or set(document) != {"schema_version", "overrides"}
+        or document.get("schema_version") != 1
+        or not isinstance(document.get("overrides"), list)
+    ):
+        raise PipelineError("Character overrides have an invalid structure.")
+
+    seen_ids: set[str] = set()
+    overrides: list[dict[str, Any]] = []
+    for override in document["overrides"]:
+        if not isinstance(override, dict):
+            raise PipelineError("Every character override must be a JSON object.")
+        keys = set(override)
+        if (
+            not OVERRIDE_REQUIRED_KEYS.issubset(keys)
+            or not keys.issubset(OVERRIDE_REQUIRED_KEYS | OVERRIDE_OPTIONAL_KEYS)
+        ):
+            raise PipelineError("A character override has invalid fields.")
+        character_id = override["id"]
+        if (
+            not isinstance(character_id, str)
+            or not SAFE_ID_PATTERN.fullmatch(character_id)
+            or character_id in seen_ids
+        ):
+            raise PipelineError("Character override IDs must be safe and unique.")
+        seen_ids.add(character_id)
+
+        aliases = override.get("accepted_names_add", [])
+        if not isinstance(aliases, list) or len(aliases) > 30:
+            raise PipelineError("Override accepted names must be a bounded list.")
+        normalized_aliases: set[str] = set()
+        for alias in aliases:
+            if not _is_clean_override_text(alias, 300):
+                raise PipelineError("Override accepted names contain invalid text.")
+            normalized_alias = unicodedata.normalize("NFKC", alias).casefold()
+            if normalized_alias in normalized_aliases:
+                raise PipelineError("Override accepted names must be unique.")
+            normalized_aliases.add(normalized_alias)
+
+        name_override = override.get("name_override")
+        has_name_override = "name_override" in override
+        if has_name_override and not _is_clean_override_text(name_override, 200):
+            raise PipelineError("Character name overrides contain invalid text.")
+        if not aliases and not has_name_override:
+            raise PipelineError(
+                "Each override must add accepted names or a character name."
+            )
+        if not _is_safe_override_url(override["source_url"]):
+            raise PipelineError("A character override has an unsafe source URL.")
+        overrides.append(override)
+    return overrides
+
+
+def apply_character_overrides(
+    characters: list[dict[str, Any]],
+    overrides: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    combined = copy.deepcopy(characters)
+    characters_by_id = {character["id"]: character for character in combined}
+    for override in overrides:
+        character = characters_by_id.get(override["id"])
+        if character is None:
+            raise PipelineError("Character override references an unknown ID.")
+        if "name_override" in override:
+            character["name"] = override["name_override"]
+    return combined
+
+
+def read_combined_characters(
+    characters_path: Path = CHARACTERS_PATH,
+    show_characters_path: Path = SHOW_CHARACTERS_PATH,
+    overrides_path: Path = OVERRIDES_PATH,
+) -> list[dict[str, Any]]:
+    characters = read_characters(characters_path) + read_characters(
+        show_characters_path
+    )
+    seen_ids: set[str] = set()
+    for character in characters:
+        character_id = character.get("id")
+        if not isinstance(character_id, str) or not character_id:
+            raise PipelineError("Every character must have a non-empty string ID.")
+        if character_id in seen_ids:
+            raise PipelineError(f"Duplicate character ID: {character_id}")
+        seen_ids.add(character_id)
+    overrides = read_character_overrides(overrides_path)
+    return apply_character_overrides(characters, overrides)
+
+
 def read_manifest(path: Path = MANIFEST_PATH) -> dict[str, Any]:
     if not path.exists():
         return {"version": 1, "updated_at": None, "portraits": []}
@@ -339,7 +489,7 @@ def sync_manifest(
         if status != "generated" and review_status == "approved":
             review_status = "pending"
 
-        record: dict[str, Any] = {
+        record_without_updated_at: dict[str, Any] = {
             "id": character_id,
             "filename_id": filename_id,
             "name": safe_text(character.get("name"), max_length=120),
@@ -352,14 +502,32 @@ def sync_manifest(
             "review_status": review_status,
             "source_links": extract_source_links(character),
             "created_at": old.get("created_at") or timestamp,
-            "updated_at": timestamp,
             "generated_at": old.get("generated_at"),
             "reviewed_at": old.get("reviewed_at"),
             "error": old.get("error") if status in {"failed", "moderation_blocked"} else None,
         }
+        old_without_updated_at = {
+            key: value for key, value in old.items() if key != "updated_at"
+        }
+        content_unchanged = (
+            "updated_at" in old
+            and old_without_updated_at == record_without_updated_at
+        )
+        record = dict(record_without_updated_at)
+        record["updated_at"] = (
+            old["updated_at"] if content_unchanged else timestamp
+        )
         records.append(record)
 
-    return {"version": 1, "updated_at": timestamp, "portraits": records}
+    unchanged_manifest = {
+        "version": 1,
+        "updated_at": manifest.get("updated_at"),
+        "portraits": records,
+    }
+    if unchanged_manifest == manifest:
+        return manifest
+    unchanged_manifest["updated_at"] = timestamp
+    return unchanged_manifest
 
 
 def validate_execute_options(args: argparse.Namespace) -> None:
@@ -707,6 +875,29 @@ def find_character(
     return matches[0]
 
 
+def find_character_document(
+    character_documents: list[tuple[Path, dict[str, Any]]],
+    character_id: str,
+) -> tuple[Path, dict[str, Any], dict[str, Any]]:
+    matches: list[tuple[Path, dict[str, Any], dict[str, Any]]] = []
+    all_ids: set[str] = set()
+    for path, document in character_documents:
+        for character in document["characters"]:
+            if not isinstance(character, dict):
+                raise PipelineError("Every character entry must be a JSON object.")
+            record_id = character.get("id")
+            if not isinstance(record_id, str) or not record_id:
+                raise PipelineError("Every character must have a non-empty string ID.")
+            if record_id in all_ids:
+                raise PipelineError(f"Duplicate character ID: {record_id}")
+            all_ids.add(record_id)
+            if record_id == character_id:
+                matches.append((path, document, character))
+    if len(matches) != 1:
+        raise PipelineError("Character ID must match exactly one character record.")
+    return matches[0]
+
+
 def review_portrait(
     manifest: dict[str, Any],
     character_id: str,
@@ -714,6 +905,7 @@ def review_portrait(
     approve: bool,
     manifest_path: Path = MANIFEST_PATH,
     characters_path: Path = CHARACTERS_PATH,
+    show_characters_path: Path = SHOW_CHARACTERS_PATH,
     output_dir: Path = PORTRAITS_DIR,
 ) -> None:
     record = find_review_record(manifest, character_id)
@@ -732,11 +924,23 @@ def review_portrait(
         portrait_path = safe_existing_portrait_path(filename_id, output_dir)
         validate_webp_file(portrait_path)
 
-    if manifest_path.is_symlink() or characters_path.is_symlink():
+    if (
+        manifest_path.is_symlink()
+        or characters_path.is_symlink()
+        or show_characters_path.is_symlink()
+    ):
         raise PipelineError("Refusing to review through a symbolic-link data file.")
 
-    character_document = read_characters_document(characters_path)
-    character = find_character(character_document, character_id)
+    character_documents = [
+        (characters_path, read_characters_document(characters_path)),
+        (
+            show_characters_path,
+            read_characters_document(show_characters_path),
+        ),
+    ]
+    target_path, character_document, character = find_character_document(
+        character_documents, character_id
+    )
     original_character_document = copy.deepcopy(character_document)
     original_manifest = copy.deepcopy(manifest)
     timestamp = utc_now()
@@ -749,14 +953,14 @@ def review_portrait(
     record["updated_at"] = timestamp
     manifest["updated_at"] = timestamp
 
-    atomic_write_json(characters_path, character_document)
+    atomic_write_json(target_path, character_document)
     try:
         atomic_write_json(manifest_path, manifest)
     except PipelineError as exc:
         manifest.clear()
         manifest.update(original_manifest)
         try:
-            atomic_write_json(characters_path, original_character_document)
+            atomic_write_json(target_path, original_character_document)
         except PipelineError as rollback_exc:
             raise PipelineError(
                 "Review update failed and character data rollback also failed."
@@ -803,7 +1007,7 @@ def build_parser() -> argparse.ArgumentParser:
 def run(args: argparse.Namespace) -> int:
     validate_execute_options(args)
     validate_review_options(args)
-    characters = read_characters()
+    characters = read_combined_characters()
     manifest = sync_manifest(characters, read_manifest())
     atomic_write_json(MANIFEST_PATH, manifest)
 

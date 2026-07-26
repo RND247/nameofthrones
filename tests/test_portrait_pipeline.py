@@ -143,6 +143,59 @@ class PortraitPipelineTests(unittest.TestCase):
             synced["portraits"][0]["created_at"],
             "2026-01-01T00:00:00Z",
         )
+        self.assertEqual(
+            synced["portraits"][0]["updated_at"],
+            "2026-01-02T00:00:00Z",
+        )
+
+    def test_second_manifest_sync_is_idempotent_and_preserves_timestamps(self):
+        first = portrait_pipeline.sync_manifest(
+            [self.character()],
+            {"portraits": []},
+            now="2026-01-01T00:00:00Z",
+        )
+        second = portrait_pipeline.sync_manifest(
+            [self.character()],
+            first,
+            now="2026-01-02T00:00:00Z",
+        )
+
+        self.assertEqual(first, second)
+        self.assertEqual(first["updated_at"], "2026-01-01T00:00:00Z")
+        self.assertEqual(
+            first["portraits"][0]["updated_at"],
+            "2026-01-01T00:00:00Z",
+        )
+
+    def test_material_character_change_updates_only_changed_record_timestamp(self):
+        characters = [
+            self.character(),
+            self.character(id="sansa-stark", name="Sansa"),
+        ]
+        first = portrait_pipeline.sync_manifest(
+            characters,
+            {"portraits": []},
+            now="2026-01-01T00:00:00Z",
+        )
+        changed_characters = [
+            self.character(name="Arya Stark"),
+            characters[1],
+        ]
+        second = portrait_pipeline.sync_manifest(
+            changed_characters,
+            first,
+            now="2026-01-02T00:00:00Z",
+        )
+
+        self.assertEqual(second["updated_at"], "2026-01-02T00:00:00Z")
+        self.assertEqual(
+            second["portraits"][0]["updated_at"],
+            "2026-01-02T00:00:00Z",
+        )
+        self.assertEqual(
+            second["portraits"][1]["updated_at"],
+            "2026-01-01T00:00:00Z",
+        )
 
     def test_source_links_accept_http_without_credentials(self):
         links = portrait_pipeline.extract_source_links(
@@ -208,7 +261,7 @@ class PortraitPipelineTests(unittest.TestCase):
             with (
                 mock.patch.object(
                     portrait_pipeline,
-                    "read_characters",
+                    "read_combined_characters",
                     return_value=[self.character()],
                 ),
                 mock.patch.object(
@@ -229,6 +282,175 @@ class PortraitPipelineTests(unittest.TestCase):
             self.assertEqual(result, 0)
             saved = json.loads(manifest_path.read_text(encoding="utf-8"))
             self.assertEqual(saved["portraits"][0]["status"], "pending")
+
+    def test_checked_in_combined_loader_returns_1015_unique_records(self):
+        characters = portrait_pipeline.read_combined_characters()
+        character_ids = [character["id"] for character in characters]
+        self.assertEqual(1015, len(characters))
+        self.assertEqual(1015, len(set(character_ids)))
+
+    def test_checked_in_hodor_name_override_changes_manifest_copy_only(self):
+        imported_characters = portrait_pipeline.read_characters()
+        imported_hodor = next(
+            character
+            for character in imported_characters
+            if character["id"] == "character-api-2"
+        )
+        self.assertEqual("Walder", imported_hodor["name"])
+
+        combined = portrait_pipeline.read_combined_characters()
+        hodor = next(
+            character
+            for character in combined
+            if character["id"] == "character-api-2"
+        )
+        self.assertEqual("Hodor", hodor["name"])
+        manifest = portrait_pipeline.sync_manifest(
+            combined,
+            {"portraits": []},
+            now="2026-01-01T00:00:00Z",
+        )
+        hodor_record = next(
+            record
+            for record in manifest["portraits"]
+            if record["id"] == "character-api-2"
+        )
+        self.assertEqual("Hodor", hodor_record["name"])
+        self.assertIn("identified as Hodor.", hodor_record["prompt"])
+        self.assertNotIn("identified as Walder.", hodor_record["prompt"])
+
+    def test_combined_loader_applies_only_name_overrides(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            book_path = root / "characters.json"
+            show_path = root / "show-characters.json"
+            overrides_path = root / "character-overrides.json"
+            book_path.write_text(
+                json.dumps({"characters": [self.character()]}),
+                encoding="utf-8",
+            )
+            show_path.write_text(
+                json.dumps(
+                    {
+                        "characters": [
+                            self.character(id="show-ros", name="Ros")
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            overrides_path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "overrides": [
+                            {
+                                "id": "arya-stark",
+                                "accepted_names_add": ["No One"],
+                                "source_url": "https://gameofthrones.fandom.com/wiki/Arya_Stark",
+                            },
+                            {
+                                "id": "show-ros",
+                                "name_override": "Ros Override",
+                                "source_url": "https://gameofthrones.fandom.com/wiki/Ros",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            combined = portrait_pipeline.read_combined_characters(
+                book_path,
+                show_path,
+                overrides_path,
+            )
+
+            self.assertEqual("Arya", combined[0]["name"])
+            self.assertEqual("Ros Override", combined[1]["name"])
+
+    def test_combined_loader_rejects_malformed_duplicate_and_unknown_overrides(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            book_path = root / "characters.json"
+            show_path = root / "show-characters.json"
+            overrides_path = root / "character-overrides.json"
+            book_path.write_text(
+                json.dumps({"characters": [self.character()]}),
+                encoding="utf-8",
+            )
+            show_path.write_text(
+                json.dumps({"characters": []}),
+                encoding="utf-8",
+            )
+            invalid_overrides = (
+                [
+                    {
+                        "id": "arya-stark",
+                        "source_url": "https://gameofthrones.fandom.com/wiki/Arya_Stark",
+                    }
+                ],
+                [
+                    {
+                        "id": "arya-stark",
+                        "name_override": "Arya",
+                        "source_url": "https://gameofthrones.fandom.com/wiki/Arya_Stark",
+                    },
+                    {
+                        "id": "arya-stark",
+                        "name_override": "Arya Stark",
+                        "source_url": "https://gameofthrones.fandom.com/wiki/Arya_Stark",
+                    },
+                ],
+                [
+                    {
+                        "id": "unknown-character",
+                        "name_override": "Unknown",
+                        "source_url": "https://gameofthrones.fandom.com/wiki/Unknown",
+                    }
+                ],
+                [
+                    {
+                        "id": "arya-stark",
+                        "name_override": "Arya",
+                        "source_url": "https://example.com/private",
+                    }
+                ],
+            )
+            for overrides in invalid_overrides:
+                with self.subTest(overrides=overrides):
+                    overrides_path.write_text(
+                        json.dumps(
+                            {
+                                "schema_version": 1,
+                                "overrides": overrides,
+                            }
+                        ),
+                        encoding="utf-8",
+                    )
+                    with self.assertRaises(portrait_pipeline.PipelineError):
+                        portrait_pipeline.read_combined_characters(
+                            book_path,
+                            show_path,
+                            overrides_path,
+                        )
+
+    def test_combined_loader_rejects_duplicate_ids_across_sources(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            book_path = root / "characters.json"
+            show_path = root / "show-characters.json"
+            document = {"characters": [self.character()]}
+            book_path.write_text(json.dumps(document), encoding="utf-8")
+            show_path.write_text(json.dumps(document), encoding="utf-8")
+            with self.assertRaisesRegex(
+                portrait_pipeline.PipelineError,
+                "Duplicate character ID",
+            ):
+                portrait_pipeline.read_combined_characters(
+                    book_path,
+                    show_path,
+                )
 
     def test_execute_requires_limit_confirmation_and_key(self):
         with self.assertRaisesRegex(portrait_pipeline.PipelineError, "--limit"):
@@ -491,6 +713,80 @@ class PortraitPipelineTests(unittest.TestCase):
             )
             self.assertTrue(webp_path.exists())
             self.assertEqual(webp_path.read_bytes(), b"keep-this-file")
+
+    def test_show_review_updates_only_show_source_file(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            output_dir = root / "portraits"
+            output_dir.mkdir()
+            show_character = self.character(
+                id="show-arya",
+                portrait_path="portraits/show-arya.webp",
+            )
+            book_document = {
+                "schema_version": 1,
+                "characters": [self.character(portrait_path=None)],
+            }
+            show_document = {
+                "schema_version": 1,
+                "characters": [show_character],
+            }
+            book_path = root / "characters.json"
+            show_path = root / "show-characters.json"
+            book_path.write_text(json.dumps(book_document), encoding="utf-8")
+            show_path.write_text(json.dumps(show_document), encoding="utf-8")
+            manifest_path = root / "manifest.json"
+            manifest = portrait_pipeline.sync_manifest(
+                [book_document["characters"][0], show_character],
+                {"portraits": []},
+                now="2026-01-01T00:00:00Z",
+            )
+
+            portrait_pipeline.review_portrait(
+                manifest,
+                "show-arya",
+                approve=False,
+                manifest_path=manifest_path,
+                characters_path=book_path,
+                show_characters_path=show_path,
+                output_dir=output_dir,
+            )
+
+            saved_book = json.loads(book_path.read_text(encoding="utf-8"))
+            saved_show = json.loads(show_path.read_text(encoding="utf-8"))
+            self.assertEqual(book_document, saved_book)
+            self.assertIsNone(saved_show["characters"][0]["portrait_path"])
+            self.assertEqual(
+                "rejected",
+                manifest["portraits"][1]["review_status"],
+            )
+
+    def test_review_rejects_duplicate_ids_across_source_files(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            book_path = root / "characters.json"
+            show_path = root / "show-characters.json"
+            duplicate_document = {"characters": [self.character()]}
+            book_path.write_text(json.dumps(duplicate_document), encoding="utf-8")
+            show_path.write_text(json.dumps(duplicate_document), encoding="utf-8")
+            manifest = portrait_pipeline.sync_manifest(
+                [self.character()],
+                {"portraits": []},
+                now="2026-01-01T00:00:00Z",
+            )
+            with self.assertRaisesRegex(
+                portrait_pipeline.PipelineError,
+                "Duplicate character ID",
+            ):
+                portrait_pipeline.review_portrait(
+                    manifest,
+                    "arya-stark",
+                    approve=False,
+                    manifest_path=root / "manifest.json",
+                    characters_path=book_path,
+                    show_characters_path=show_path,
+                    output_dir=root / "portraits",
+                )
 
     def test_approve_requires_generated_status_and_safe_file(self):
         manifest = portrait_pipeline.sync_manifest(

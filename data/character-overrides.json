@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "overrides": [
+    {
+      "id": "character-api-339",
+      "accepted_names_add": [
+        "Ned Stark",
+        "Lord Ned Stark"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Eddard_Stark"
+    },
+    {
+      "id": "character-api-232",
+      "accepted_names_add": [
+        "Lady Catelyn Stark"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Catelyn_Stark"
+    },
+    {
+      "id": "character-api-208",
+      "accepted_names_add": [
+        "Bran Stark"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Bran_Stark"
+    },
+    {
+      "id": "character-api-2",
+      "name_override": "Hodor",
+      "accepted_names_add": [
+        "Wylis",
+        "Wylis Hodor"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Hodor"
+    },
+    {
+      "id": "character-api-1303",
+      "accepted_names_add": [
+        "Khaleesi",
+        "Queen Daenerys"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Daenerys_Targaryen"
+    },
+    {
+      "id": "character-api-1052",
+      "accepted_names_add": [
+        "Lord Tyrion",
+        "Lord Tyrion Lannister"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Tyrion_Lannister"
+    },
+    {
+      "id": "character-api-238",
+      "accepted_names_add": [
+        "Queen Cersei"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Cersei_Lannister"
+    },
+    {
+      "id": "character-api-529",
+      "accepted_names_add": [
+        "Ser Jaime",
+        "Ser Jaime Lannister"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Jaime_Lannister"
+    },
+    {
+      "id": "character-api-565",
+      "accepted_names_add": [
+        "King Joffrey"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Joffrey_Baratheon"
+    },
+    {
+      "id": "character-api-901",
+      "accepted_names_add": [
+        "Robert Baratheon",
+        "King Robert",
+        "King Robert Baratheon"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Robert_Baratheon"
+    },
+    {
+      "id": "character-api-2069",
+      "accepted_names_add": [
+        "Lord Varys"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Varys"
+    },
+    {
+      "id": "character-api-823",
+      "accepted_names_add": [
+        "Lord Baelish",
+        "Petyr Littlefinger Baelish"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Petyr_Baelish"
+    },
+    {
+      "id": "character-api-1560",
+      "accepted_names_add": [
+        "Ser Jorah",
+        "Ser Jorah Mormont"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Jorah_Mormont"
+    },
+    {
+      "id": "character-api-1346",
+      "accepted_names_add": [
+        "Khal Drogo"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Drogo"
+    },
+    {
+      "id": "character-api-27",
+      "accepted_names_add": [
+        "Lord Tywin",
+        "Lord Tywin Lannister"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Tywin_Lannister"
+    },
+    {
+      "id": "character-api-216",
+      "accepted_names_add": [
+        "Brienne",
+        "Lady Brienne"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Brienne_of_Tarth"
+    },
+    {
+      "id": "character-api-954",
+      "accepted_names_add": [
+        "Sam Tarly"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Samwell_Tarly"
+    },
+    {
+      "id": "character-api-1963",
+      "accepted_names_add": [
+        "King Stannis"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Stannis_Baratheon"
+    },
+    {
+      "id": "character-api-1319",
+      "accepted_names_add": [
+        "Ser Davos",
+        "Ser Davos Seaworth"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Davos_Seaworth"
+    },
+    {
+      "id": "character-api-16",
+      "accepted_names_add": [
+        "Queen Margaery"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Margaery_Tyrell"
+    },
+    {
+      "id": "character-api-784",
+      "accepted_names_add": [
+        "Olenna Tyrell",
+        "Lady Olenna",
+        "Lady Olenna Tyrell"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Olenna_Tyrell"
+    },
+    {
+      "id": "character-api-217",
+      "accepted_names_add": [
+        "Ser Bronn"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Bronn"
+    },
+    {
+      "id": "character-api-1770",
+      "accepted_names_add": [
+        "Oberyn Martell",
+        "Prince Oberyn",
+        "Prince Oberyn Martell"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Oberyn_Martell"
+    },
+    {
+      "id": "character-api-1709",
+      "accepted_names_add": [
+        "Missandei of Naath"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Missandei"
+    },
+    {
+      "id": "character-api-1445",
+      "accepted_names_add": [
+        "Torgo Nudho"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Grey_Worm"
+    },
+    {
+      "id": "character-api-1418",
+      "accepted_names_add": [
+        "Gendry Baratheon",
+        "Lord Gendry"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Gendry_Baratheon"
+    },
+    {
+      "id": "character-api-1442",
+      "accepted_names_add": [
+        "Ser Gregor Clegane"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Gregor_Clegane"
+    },
+    {
+      "id": "character-api-150",
+      "accepted_names_add": [
+        "Yara",
+        "Yara Greyjoy"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Yara_Greyjoy"
+    },
+    {
+      "id": "character-api-341",
+      "accepted_names_add": [
+        "Eddison Tollett"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Eddison_Tollett"
+    },
+    {
+      "id": "character-api-1649",
+      "accepted_names_add": [
+        "Maester Luwin"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Luwin"
+    },
+    {
+      "id": "character-api-20",
+      "accepted_names_add": [
+        "Septa Mordane"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Mordane"
+    },
+    {
+      "id": "character-api-521",
+      "accepted_names_add": [
+        "Ser Ilyn Payne"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Ilyn_Payne"
+    },
+    {
+      "id": "character-api-1826",
+      "accepted_names_add": [
+        "Grand Maester Pycelle"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Pycelle"
+    },
+    {
+      "id": "character-api-1848",
+      "accepted_names_add": [
+        "Maester Qyburn"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Qyburn"
+    },
+    {
+      "id": "character-api-894",
+      "accepted_names_add": [
+        "Robin",
+        "Robin Arryn"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Robin_Arryn"
+    },
+    {
+      "id": "character-api-1935",
+      "accepted_names_add": [
+        "Selyse Baratheon",
+        "Queen Selyse"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Selyse_Baratheon"
+    },
+    {
+      "id": "character-api-1242",
+      "accepted_names_add": [
+        "Three-Eyed Raven"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Three-Eyed_Raven"
+    },
+    {
+      "id": "character-api-1096",
+      "accepted_names_add": [
+        "Black Walder Rivers"
+      ],
+      "source_url": "https://gameofthrones.fandom.com/wiki/Walder_Rivers"
+    }
+  ]
+}

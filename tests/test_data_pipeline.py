@@ -23,17 +23,190 @@ class CheckedInReleaseTests(unittest.TestCase):
         cls.sources = validate_data.load_json(
             REPOSITORY_ROOT / "data" / "sources.json"
         )
-
-    def test_release_has_exactly_1000_valid_characters(self):
-        issues = validate_data.validate_documents(
-            self.characters,
-            self.houses,
-            self.sources,
-            expected_count=1000,
+        cls.show_characters = validate_data.load_json(
+            REPOSITORY_ROOT / "data" / "show-characters.json"
         )
+        cls.levels = validate_data.load_json(
+            REPOSITORY_ROOT / "data" / "levels.json"
+        )
+        cls.overrides = validate_data.load_json(
+            REPOSITORY_ROOT / "data" / "character-overrides.json"
+        )
+
+    def validate_release(self, **changes):
+        documents = {
+            "characters_document": self.characters,
+            "groups_document": self.houses,
+            "sources_document": self.sources,
+            "show_characters_document": self.show_characters,
+            "levels_document": self.levels,
+            "overrides_document": self.overrides,
+            "expected_count": 1000,
+        }
+        documents.update(changes)
+        return validate_data.validate_documents(**documents)
+
+    def test_release_has_exactly_1015_valid_characters(self):
+        issues = self.validate_release()
         errors = [issue for issue in issues if issue.level == "error"]
         self.assertEqual([], errors)
         self.assertEqual(1000, len(self.characters["characters"]))
+        self.assertEqual(15, len(self.show_characters["characters"]))
+
+    def test_level_rosters_have_exact_counts_and_subset_order(self):
+        levels = {level["id"]: level for level in self.levels["levels"]}
+        newcomer_ids = levels["newcomer"]["character_ids"]
+        fan_ids = levels["fan"]["character_ids"]
+        self.assertEqual(40, len(newcomer_ids))
+        self.assertEqual(250, len(fan_ids))
+        self.assertTrue(set(newcomer_ids) < set(fan_ids))
+        self.assertIs(levels["expert"]["include_all"], True)
+
+    def test_show_records_are_show_only_and_bookless(self):
+        for character in self.show_characters["characters"]:
+            self.assertEqual("tv_only", character["media_scope"])
+            self.assertEqual([], character["book_ids"])
+            self.assertTrue(character["tv_seasons"])
+            self.assertEqual(
+                len(character["tv_seasons"]),
+                len(set(character["tv_seasons"])),
+            )
+            self.assertTrue(
+                all(1 <= season <= 8 for season in character["tv_seasons"])
+            )
+
+    def test_duplicate_id_across_book_and_show_is_rejected(self):
+        show_characters = copy.deepcopy(self.show_characters)
+        show_characters["characters"][0]["id"] = self.characters["characters"][0]["id"]
+        issues = self.validate_release(
+            show_characters_document=show_characters
+        )
+        self.assertIn(
+            "character_id",
+            {issue.code for issue in issues if issue.level == "error"},
+        )
+
+    def test_invalid_show_season_is_rejected(self):
+        show_characters = copy.deepcopy(self.show_characters)
+        show_characters["characters"][0]["tv_seasons"] = [0, 8, 8]
+        issues = self.validate_release(
+            show_characters_document=show_characters
+        )
+        self.assertIn(
+            "tv_seasons",
+            {issue.code for issue in issues if issue.level == "error"},
+        )
+
+    def test_unknown_and_duplicate_roster_ids_are_rejected(self):
+        levels = copy.deepcopy(self.levels)
+        levels["levels"][0]["character_ids"][-1] = levels["levels"][0][
+            "character_ids"
+        ][0]
+        levels["levels"][1]["character_ids"][-1] = "unknown-character"
+        issues = self.validate_release(levels_document=levels)
+        error_codes = {issue.code for issue in issues if issue.level == "error"}
+        self.assertIn("level_roster_duplicate", error_codes)
+        self.assertIn("level_character_id", error_codes)
+
+    def test_override_alias_must_be_new_and_unique(self):
+        overrides = copy.deepcopy(self.overrides)
+        target_id = overrides["overrides"][0]["id"]
+        target = next(
+            character
+            for character in self.characters["characters"]
+            if character["id"] == target_id
+        )
+        overrides["overrides"][0]["accepted_names_add"] = [
+            target["accepted_names"][0],
+            target["accepted_names"][0],
+        ]
+        issues = self.validate_release(overrides_document=overrides)
+        self.assertIn(
+            "override_aliases",
+            {issue.code for issue in issues if issue.level == "error"},
+        )
+
+    def test_name_only_override_is_valid(self):
+        overrides = copy.deepcopy(self.overrides)
+        hodor_override = next(
+            override
+            for override in overrides["overrides"]
+            if override["id"] == "character-api-2"
+        )
+        hodor_override.pop("accepted_names_add")
+        issues = self.validate_release(overrides_document=overrides)
+        self.assertEqual(
+            [],
+            [issue for issue in issues if issue.level == "error"],
+        )
+
+    def test_override_requires_aliases_or_clean_name(self):
+        overrides = copy.deepcopy(self.overrides)
+        hodor_override = next(
+            override
+            for override in overrides["overrides"]
+            if override["id"] == "character-api-2"
+        )
+        hodor_override.pop("accepted_names_add")
+        hodor_override.pop("name_override")
+        issues = self.validate_release(overrides_document=overrides)
+        self.assertIn(
+            "override_content",
+            {issue.code for issue in issues if issue.level == "error"},
+        )
+
+        hodor_override["name_override"] = " <script> "
+        issues = self.validate_release(overrides_document=overrides)
+        self.assertIn(
+            "override_name",
+            {issue.code for issue in issues if issue.level == "error"},
+        )
+
+    def test_override_rejects_unknown_duplicate_ids_and_unsafe_urls(self):
+        overrides = copy.deepcopy(self.overrides)
+        overrides["overrides"][0]["id"] = "unknown-character"
+        overrides["overrides"][1]["id"] = overrides["overrides"][2]["id"]
+        overrides["overrides"][2]["source_url"] = "https://github.com/private/source"
+        issues = self.validate_release(overrides_document=overrides)
+        error_codes = {issue.code for issue in issues if issue.level == "error"}
+        self.assertIn("override_id", error_codes)
+        self.assertIn("override_source_url", error_codes)
+
+    def test_made_up_source_ids_are_rejected(self):
+        characters = copy.deepcopy(self.characters)
+        characters["characters"][0]["source"]["source_id"] = "made-up-source"
+        levels = copy.deepcopy(self.levels)
+        levels["sources"][0]["id"] = "made-up-source"
+        show_characters = copy.deepcopy(self.show_characters)
+        show_characters["characters"][0]["source"][
+            "source_id"
+        ] = "made-up-source"
+        issues = self.validate_release(
+            characters_document=characters,
+            levels_document=levels,
+            show_characters_document=show_characters,
+        )
+        error_codes = {issue.code for issue in issues if issue.level == "error"}
+        self.assertIn("level_source_id", error_codes)
+        self.assertGreaterEqual(
+            len(
+                [
+                    issue
+                    for issue in issues
+                    if issue.level == "error" and issue.code == "unknown_source"
+                ]
+            ),
+            2,
+        )
+
+    def test_invalid_level_source_date_is_rejected(self):
+        levels = copy.deepcopy(self.levels)
+        levels["sources"][0]["accessed_at"] = "2026-02-30"
+        issues = self.validate_release(levels_document=levels)
+        self.assertIn(
+            "level_source_date",
+            {issue.code for issue in issues if issue.level == "error"},
+        )
 
     def test_release_has_no_excluded_character_markers(self):
         for character in self.characters["characters"]:

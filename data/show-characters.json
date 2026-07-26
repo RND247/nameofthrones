@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "characters": [
+    {
+      "id": "show-night-king",
+      "name": "Night King",
+      "accepted_names": [
+        "Night King",
+        "The Night King"
+      ],
+      "gender": "male",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Night_King",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-talisa-maegyr",
+      "name": "Talisa Maegyr",
+      "accepted_names": [
+        "Talisa Maegyr",
+        "Talisa Stark"
+      ],
+      "gender": "female",
+      "titles": [
+        "Queen in the North"
+      ],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        2,
+        3
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Talisa_Stark",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-ros",
+      "name": "Ros",
+      "accepted_names": [
+        "Ros"
+      ],
+      "gender": "female",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        1,
+        2,
+        3
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Ros",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-olly",
+      "name": "Olly",
+      "accepted_names": [
+        "Olly"
+      ],
+      "gender": "male",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        4,
+        5,
+        6
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Olly",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-myranda",
+      "name": "Myranda",
+      "accepted_names": [
+        "Myranda"
+      ],
+      "gender": "female",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Myranda",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-locke",
+      "name": "Locke",
+      "accepted_names": [
+        "Locke"
+      ],
+      "gender": "male",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        3,
+        4
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Locke",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-karl-tanner",
+      "name": "Karl Tanner",
+      "accepted_names": [
+        "Karl Tanner"
+      ],
+      "gender": "male",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        3,
+        4
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Karl_Tanner",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-karsi",
+      "name": "Karsi",
+      "accepted_names": [
+        "Karsi"
+      ],
+      "gender": "female",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        5
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Karsi",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-kinvara",
+      "name": "Kinvara",
+      "accepted_names": [
+        "Kinvara"
+      ],
+      "gender": "female",
+      "titles": [
+        "High Priestess of the Red Temple of Volantis"
+      ],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        6
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Kinvara",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-mossador",
+      "name": "Mossador",
+      "accepted_names": [
+        "Mossador"
+      ],
+      "gender": "male",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        4,
+        5
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Mossador",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-alton-lannister",
+      "name": "Alton Lannister",
+      "accepted_names": [
+        "Alton Lannister",
+        "Ser Alton Lannister"
+      ],
+      "gender": "male",
+      "titles": [
+        "Ser"
+      ],
+      "house_ids": [
+        "house-api-229"
+      ],
+      "group_id": "house-api-229",
+      "book_ids": [],
+      "tv_seasons": [
+        2
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Alton_Lannister",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-harald-karstark",
+      "name": "Harald Karstark",
+      "accepted_names": [
+        "Harald Karstark",
+        "Lord Harald Karstark"
+      ],
+      "gender": "male",
+      "titles": [
+        "Lord of Karhold"
+      ],
+      "house_ids": [
+        "house-api-215"
+      ],
+      "group_id": "house-api-215",
+      "book_ids": [],
+      "tv_seasons": [
+        6
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Harald_Karstark",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-loboda",
+      "name": "Loboda",
+      "accepted_names": [
+        "Loboda"
+      ],
+      "gender": "male",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        5
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Loboda",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-qhono",
+      "name": "Qhono",
+      "accepted_names": [
+        "Qhono"
+      ],
+      "gender": "male",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        6,
+        7,
+        8
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Qhono",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "show-ornela",
+      "name": "Ornela",
+      "accepted_names": [
+        "Ornela"
+      ],
+      "gender": "female",
+      "titles": [],
+      "house_ids": [],
+      "group_id": "group-unaffiliated",
+      "book_ids": [],
+      "tv_seasons": [
+        6
+      ],
+      "media_scope": "tv_only",
+      "portrait_path": null,
+      "source": {
+        "source_id": "game-of-thrones-wiki",
+        "url": "https://gameofthrones.fandom.com/wiki/Ornela",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    }
+  ]
+}

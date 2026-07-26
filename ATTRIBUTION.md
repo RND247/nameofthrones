@@ -1,19 +1,44 @@
 # Attribution
 
-## Checked release data
+## Current release data
 
-The checked version 1 dataset was built from factual metadata supplied by
-[An API of Ice and Fire](https://anapioficeandfire.com/Documentation). Each
-character and house record keeps its source API URL. The API documentation
-does not state a separate license for its data. The repository therefore does
-not claim that this dataset is covered by the MIT code license or grant any
-extra rights to it. Users should review the source terms and applicable law
-before copying or redistributing the data.
+Expert currently combines 1,015 records. This is 1,000 imported book records
+plus 15 manually curated, true TV-only records. Newcomer contains exactly 40
+core TV characters. Fan contains exactly 250 named on-screen characters: 235
+imported records plus all 15 TV-only records. These are curated quiz lists, not
+complete *A Song of Ice and Fire* or *Game of Thrones* archives.
+
+## Television roster sources
+
+The TV rosters and TV-only records were checked against these sources:
+
+- [Wikipedia's List of Game of Thrones characters][wikipedia-characters].
+  Wikipedia text is available under
+  [Creative Commons Attribution-ShareAlike 4.0][cc-by-sa-4].
+- [An API of Ice and Fire documentation][api]. For the TV rosters, the API is
+  used only to map and check names against imported book records and their
+  source links. Its documentation does not state a separate data license.
+- The community-run [Game of Thrones Wiki][got-wiki], with
+  [Fandom's license notice][fandom-license].
+
+The project used character names, short facts, aliases, appearance facts, and
+source links needed for the quiz. It did not copy descriptive article prose or
+wiki images.
+
+## Imported book records
+
+The 1,000-record book collection was built from factual metadata supplied by
+[An API of Ice and Fire][api]. Each imported character and house record keeps
+its source API URL. The API documentation does not state a separate license
+for its data. The repository therefore does not claim that this dataset is
+covered by the MIT code license or grant any extra rights to it. Users should
+review the source terms and applicable law before copying or redistributing the
+data.
 
 ## A Wiki of Ice and Fire
 
 [A Wiki of Ice and Fire](https://awoiaf.westeros.org/) is the preferred future
-source, but it was not the source of the checked version 1 character records
+source, but it was not the source of the current imported character records
 because its API returned HTTP 403 during that import.
 
 When text or data from A Wiki of Ice and Fire is actually used, that material
@@ -34,7 +59,7 @@ datasets, source text, franchise material, and generated assets.
 
 House placeholder graphics are project interface assets. They are generic and
 do not claim to reproduce official heraldry. No generated character portraits
-are claimed to be included in the checked release.
+are claimed to be included in the current release.
 
 ## Franchise rights
 
@@ -54,4 +79,9 @@ noncanonical artistic interpretations. They may be inaccurate or biased and
 must receive human approval before use. They must not copy wiki images,
 official art, franchise designs, or real actors.
 
+[api]: https://anapioficeandfire.com/Documentation
 [cc-by-sa]: https://creativecommons.org/licenses/by-sa/3.0/
+[wikipedia-characters]: https://en.wikipedia.org/wiki/List_of_Game_of_Thrones_characters
+[cc-by-sa-4]: https://creativecommons.org/licenses/by-sa/4.0/
+[got-wiki]: https://gameofthrones.fandom.com/wiki/Category:Individuals_appearing_in_Game_of_Thrones
+[fandom-license]: https://www.fandom.com/licensing

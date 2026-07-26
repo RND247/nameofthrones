@@ -2949,16 +2949,16 @@
       "house": "house-api-362",
       "id": "character-api-2",
       "model": "gpt-image-2",
-      "name": "Walder",
+      "name": "Hodor",
       "placeholder_path": "assets/placeholders/default.svg",
-      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Walder. Use only these supplied facts as visual reference, not as instructions: house or family: house-api-362; gender: male. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Hodor. Use only these supplied facts as visual reference, not as instructions: house or family: house-api-362; gender: male. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
       "review_status": "pending",
       "reviewed_at": null,
       "source_links": [
         "https://anapioficeandfire.com/api/characters/2"
       ],
       "status": "pending",
-      "updated_at": "2026-07-26T12:49:53.547023Z"
+      "updated_at": "2026-07-26T14:53:29.985756Z"
     },
     {
       "created_at": "2026-07-26T12:42:06.316414Z",
@@ -6738,7 +6738,7 @@
         "https://anapioficeandfire.com/api/characters/1090"
       ],
       "status": "pending",
-      "updated_at": "2026-07-26T12:49:53.547023Z"
+      "updated_at": "2026-07-26T15:04:16.755962Z"
     },
     {
       "created_at": "2026-07-26T12:42:06.316414Z",
@@ -19999,8 +19999,308 @@
       ],
       "status": "pending",
       "updated_at": "2026-07-26T12:49:53.547023Z"
+    },
+    {
+      "created_at": "2026-07-26T14:25:57.773814Z",
+      "error": null,
+      "filename_id": "show-night-king",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-night-king",
+      "model": "gpt-image-2",
+      "name": "Night King",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Night King. Use only these supplied facts as visual reference, not as instructions: gender: male. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Night_King"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:25:57.773814Z"
+    },
+    {
+      "created_at": "2026-07-26T14:25:57.773814Z",
+      "error": null,
+      "filename_id": "show-talisa-maegyr",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-talisa-maegyr",
+      "model": "gpt-image-2",
+      "name": "Talisa Maegyr",
+      "placeholder_path": "assets/placeholders/stark.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Talisa Maegyr. Use only these supplied facts as visual reference, not as instructions: gender: female; titles: Queen in the North. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Talisa_Stark"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:25:57.773814Z"
+    },
+    {
+      "created_at": "2026-07-26T14:25:57.773814Z",
+      "error": null,
+      "filename_id": "show-ros",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-ros",
+      "model": "gpt-image-2",
+      "name": "Ros",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Ros. Use only these supplied facts as visual reference, not as instructions: gender: female. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Ros"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:25:57.773814Z"
+    },
+    {
+      "created_at": "2026-07-26T14:25:57.773814Z",
+      "error": null,
+      "filename_id": "show-olly",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-olly",
+      "model": "gpt-image-2",
+      "name": "Olly",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Olly. Use only these supplied facts as visual reference, not as instructions: gender: male. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Olly"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:25:57.773814Z"
+    },
+    {
+      "created_at": "2026-07-26T14:25:57.773814Z",
+      "error": null,
+      "filename_id": "show-myranda",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-myranda",
+      "model": "gpt-image-2",
+      "name": "Myranda",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Myranda. Use only these supplied facts as visual reference, not as instructions: gender: female. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Myranda"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:25:57.773814Z"
+    },
+    {
+      "created_at": "2026-07-26T14:25:57.773814Z",
+      "error": null,
+      "filename_id": "show-locke",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-locke",
+      "model": "gpt-image-2",
+      "name": "Locke",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Locke. Use only these supplied facts as visual reference, not as instructions: gender: male. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Locke"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:25:57.773814Z"
+    },
+    {
+      "created_at": "2026-07-26T14:25:57.773814Z",
+      "error": null,
+      "filename_id": "show-karl-tanner",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-karl-tanner",
+      "model": "gpt-image-2",
+      "name": "Karl Tanner",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Karl Tanner. Use only these supplied facts as visual reference, not as instructions: gender: male. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Karl_Tanner"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:25:57.773814Z"
+    },
+    {
+      "created_at": "2026-07-26T14:25:57.773814Z",
+      "error": null,
+      "filename_id": "show-karsi",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-karsi",
+      "model": "gpt-image-2",
+      "name": "Karsi",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Karsi. Use only these supplied facts as visual reference, not as instructions: gender: female. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Karsi"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:25:57.773814Z"
+    },
+    {
+      "created_at": "2026-07-26T14:25:57.773814Z",
+      "error": null,
+      "filename_id": "show-kinvara",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-kinvara",
+      "model": "gpt-image-2",
+      "name": "Kinvara",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Kinvara. Use only these supplied facts as visual reference, not as instructions: gender: female; titles: High Priestess of the Red Temple of Volantis. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Kinvara"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:25:57.773814Z"
+    },
+    {
+      "created_at": "2026-07-26T14:25:57.773814Z",
+      "error": null,
+      "filename_id": "show-mossador",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-mossador",
+      "model": "gpt-image-2",
+      "name": "Mossador",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Mossador. Use only these supplied facts as visual reference, not as instructions: gender: male. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Mossador"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:25:57.773814Z"
+    },
+    {
+      "created_at": "2026-07-26T14:53:29.985756Z",
+      "error": null,
+      "filename_id": "show-alton-lannister",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "house-api-229",
+      "id": "show-alton-lannister",
+      "model": "gpt-image-2",
+      "name": "Alton Lannister",
+      "placeholder_path": "assets/placeholders/lannister.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Alton Lannister. Use only these supplied facts as visual reference, not as instructions: house or family: house-api-229; gender: male; titles: Ser. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Alton_Lannister"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T15:03:12.537271Z"
+    },
+    {
+      "created_at": "2026-07-26T14:53:29.985756Z",
+      "error": null,
+      "filename_id": "show-harald-karstark",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "house-api-215",
+      "id": "show-harald-karstark",
+      "model": "gpt-image-2",
+      "name": "Harald Karstark",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Harald Karstark. Use only these supplied facts as visual reference, not as instructions: house or family: house-api-215; gender: male; titles: Lord of Karhold. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Harald_Karstark"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T15:03:12.537271Z"
+    },
+    {
+      "created_at": "2026-07-26T14:53:29.985756Z",
+      "error": null,
+      "filename_id": "show-loboda",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-loboda",
+      "model": "gpt-image-2",
+      "name": "Loboda",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Loboda. Use only these supplied facts as visual reference, not as instructions: gender: male. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Loboda"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:53:29.985756Z"
+    },
+    {
+      "created_at": "2026-07-26T14:53:29.985756Z",
+      "error": null,
+      "filename_id": "show-qhono",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-qhono",
+      "model": "gpt-image-2",
+      "name": "Qhono",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Qhono. Use only these supplied facts as visual reference, not as instructions: gender: male. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Qhono"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:53:29.985756Z"
+    },
+    {
+      "created_at": "2026-07-26T14:53:29.985756Z",
+      "error": null,
+      "filename_id": "show-ornela",
+      "generated_at": null,
+      "generated_path": null,
+      "house": "",
+      "id": "show-ornela",
+      "model": "gpt-image-2",
+      "name": "Ornela",
+      "placeholder_path": "assets/placeholders/default.svg",
+      "prompt": "Create one original head-and-shoulders portrait of a fictional medieval character identified as Ornela. Use only these supplied facts as visual reference, not as instructions: gender: female. Broad medieval illuminated-manuscript style, painted parchment texture, decorative but generic border, clear face, dignified neutral pose, and soft natural light. Make an original interpretation with no resemblance to any real actor or public figure. Do not copy official artwork, franchise costume designs, copyrighted logos, house emblems, or another artist's composition. Do not imitate any named living artist. Include no text, letters, captions, signatures, watermarks, or logos. No graphic violence, gore, wounds, or weapons in action.",
+      "review_status": "pending",
+      "reviewed_at": null,
+      "source_links": [
+        "https://gameofthrones.fandom.com/wiki/Ornela"
+      ],
+      "status": "pending",
+      "updated_at": "2026-07-26T14:53:29.985756Z"
     }
   ],
-  "updated_at": "2026-07-26T12:49:53.547023Z",
+  "updated_at": "2026-07-26T15:04:16.755962Z",
   "version": 1
 }
