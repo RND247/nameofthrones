@@ -17,7 +17,7 @@ import {
 } from "./levels.js";
 import {
   loadProgressState,
-  resetLevelProgress,
+  resetAllProgress,
   saveProgressState,
   setActiveDifficulty,
   updateLevelProgress,
@@ -53,6 +53,7 @@ const elements = {
   foundCount: getRequiredElement("found-count"),
   gameHeader: getRequiredElement("game-header"),
   gameView: getRequiredElement("game-view"),
+  guessPane: getRequiredElement("guess-pane"),
   houseList: getRequiredElement("house-list"),
   input: getRequiredElement("name-input"),
   levelCards: getRequiredElement("level-cards"),
@@ -371,6 +372,7 @@ function activateLevel(levelId, saveSelection = true) {
   elements.activeLevelLabel.textContent = level.name;
   elements.levelPicker.hidden = true;
   elements.gameHeader.hidden = false;
+  elements.guessPane.hidden = false;
   elements.gameView.hidden = false;
   cancelResetConfirmation();
 
@@ -396,6 +398,7 @@ function showLevelPicker(clearSelection = true) {
 
   state.activeLevel = null;
   elements.gameHeader.hidden = true;
+  elements.guessPane.hidden = true;
   elements.gameView.hidden = true;
   elements.levelPicker.hidden = false;
   renderLevelCards();
@@ -416,7 +419,7 @@ function persistActiveProgress(showWarning = true) {
       completedAt: state.completedAt,
       filterHouseId: state.filterHouseId,
     },
-    state.rosterIdsByLevel.get(state.activeLevel.id) ?? new Set(),
+    state.rosterIdsByLevel,
   );
   const saved = saveProgressState(localStorage, state.progressState);
   if (!saved && showWarning) {
@@ -976,7 +979,10 @@ function handleResetClick() {
   if (elements.resetButton.dataset.confirming !== "true") {
     elements.resetButton.dataset.confirming = "true";
     elements.resetButton.textContent = "Confirm reset";
-    setMessage("Select Confirm reset to erase your progress.", "warning");
+    setMessage(
+      "Select Confirm reset to erase progress from every level.",
+      "warning",
+    );
     resetConfirmationTimeoutId = window.setTimeout(
       cancelResetConfirmation,
       5000,
@@ -993,10 +999,7 @@ function handleResetClick() {
     return;
   }
 
-  state.progressState = resetLevelProgress(
-    state.progressState,
-    state.activeLevel.id,
-  );
+  state.progressState = resetAllProgress(state.progressState);
   state.foundIds.clear();
   state.startedAt = null;
   state.completedAt = null;
@@ -1018,7 +1021,7 @@ function handleResetClick() {
 
   applyHouseFilter();
   updateInterface();
-  setMessage("Game reset. The names are hidden again.", "success");
+  setMessage("Game reset. Names are hidden in every level.", "success");
   elements.input.value = "";
   elements.input.focus();
 }

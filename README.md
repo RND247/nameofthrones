@@ -35,11 +35,11 @@ limited to the current 1,000-record book import and 15 TV-only additions. It
 does not contain every named character from *A Song of Ice and Fire* or every
 character shown in *Game of Thrones*.
 
-Progress and the timer are saved separately for each level in the browser's
-local storage. **Change level** keeps the progress and time already saved for
-every level. **Reset game** clears only the active level. Progress saved by the
-old version 1 game is moved into Expert when the new progress format is first
-saved successfully.
+Found characters count in every level that includes them, while each level
+keeps its own timer and house filter in the browser's local storage. **Change
+level** keeps all saved progress and times. **Reset game** clears progress from
+every level. Progress saved by the old version 1 game is shared with every
+matching level when the new progress format is first saved successfully.
 
 ## Release data and limits
 

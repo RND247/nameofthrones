@@ -7,7 +7,7 @@ import {
   V2_STORAGE_KEY,
   createProgressState,
   loadProgressState,
-  resetLevelProgress,
+  resetAllProgress,
   setActiveDifficulty,
   updateLevelProgress,
 } from "../src/progress.js";
@@ -41,7 +41,7 @@ class FakeStorage {
   }
 }
 
-test("each level keeps independent progress", () => {
+test("found characters count in every level that contains them", () => {
   let state = createProgressState(levelIds);
   assert.equal(state.version, STORAGE_VERSION);
   state = updateLevelProgress(
@@ -53,23 +53,27 @@ test("each level keeps independent progress", () => {
       completedAt: 200,
       filterHouseId: "house-stark",
     },
-    rosterIdsByLevel.get("newcomer"),
+    rosterIdsByLevel,
   );
+  assert.deepEqual(state.levels.newcomer.foundIds, ["arya"]);
+  assert.deepEqual(state.levels.fan.foundIds, ["arya"]);
+  assert.deepEqual(state.levels.expert.foundIds, ["arya"]);
+
   state = updateLevelProgress(
     state,
     "fan",
     {
-      foundIds: ["jon"],
+      foundIds: ["arya", "jon"],
       startedAt: 300,
       completedAt: null,
       filterHouseId: "all",
     },
-    rosterIdsByLevel.get("fan"),
+    rosterIdsByLevel,
   );
 
   assert.deepEqual(state.levels.newcomer.foundIds, ["arya"]);
-  assert.deepEqual(state.levels.fan.foundIds, ["jon"]);
-  assert.deepEqual(state.levels.expert.foundIds, []);
+  assert.deepEqual(state.levels.fan.foundIds, ["arya", "jon"]);
+  assert.deepEqual(state.levels.expert.foundIds, ["arya", "jon"]);
 });
 
 test("switching changes only the active difficulty", () => {
@@ -82,7 +86,46 @@ test("switching changes only the active difficulty", () => {
   assert.equal(setActiveDifficulty(fan, "missing", levelIds), fan);
 });
 
-test("reset clears only the selected level", () => {
+test("saved progress is shared when an older state is loaded", () => {
+  const storage = new FakeStorage({
+    [V2_STORAGE_KEY]: JSON.stringify({
+      version: STORAGE_VERSION,
+      activeDifficulty: "fan",
+      levels: {
+        newcomer: {
+          foundIds: ["arya"],
+          startedAt: 100,
+          completedAt: 200,
+          filterHouseId: "all",
+        },
+        fan: {
+          foundIds: ["jon"],
+          startedAt: 300,
+          completedAt: null,
+          filterHouseId: "all",
+        },
+        expert: {
+          foundIds: ["ros"],
+          startedAt: 400,
+          completedAt: null,
+          filterHouseId: "all",
+        },
+      },
+    }),
+  });
+  const state = loadProgressState(
+    storage,
+    levelIds,
+    rosterIdsByLevel,
+    "expert",
+  );
+
+  assert.deepEqual(state.levels.newcomer.foundIds, ["arya"]);
+  assert.deepEqual(state.levels.fan.foundIds, ["arya", "jon"]);
+  assert.deepEqual(state.levels.expert.foundIds, ["arya", "jon", "ros"]);
+});
+
+test("reset clears shared progress from every level", () => {
   let state = createProgressState(levelIds);
   state = updateLevelProgress(
     state,
@@ -93,20 +136,20 @@ test("reset clears only the selected level", () => {
       completedAt: 200,
       filterHouseId: "house-stark",
     },
-    rosterIdsByLevel.get("newcomer"),
+    rosterIdsByLevel,
   );
   state = updateLevelProgress(
     state,
     "fan",
     {
-      foundIds: ["jon"],
+      foundIds: ["arya", "jon"],
       startedAt: 300,
       completedAt: null,
       filterHouseId: "all",
     },
-    rosterIdsByLevel.get("fan"),
+    rosterIdsByLevel,
   );
-  const reset = resetLevelProgress(state, "newcomer");
+  const reset = resetAllProgress(state);
 
   assert.deepEqual(reset.levels.newcomer, {
     foundIds: [],
@@ -114,7 +157,8 @@ test("reset clears only the selected level", () => {
     completedAt: null,
     filterHouseId: "all",
   });
-  assert.deepEqual(reset.levels.fan, state.levels.fan);
+  assert.deepEqual(reset.levels.fan, reset.levels.newcomer);
+  assert.deepEqual(reset.levels.expert, reset.levels.newcomer);
 });
 
 test("v1 state migrates into Expert and is removed after a successful save", () => {
@@ -135,7 +179,8 @@ test("v1 state migrates into Expert and is removed after a successful save", () 
 
   assert.equal(state.activeDifficulty, null);
   assert.deepEqual(state.levels.expert.foundIds, ["arya"]);
-  assert.deepEqual(state.levels.newcomer.foundIds, []);
+  assert.deepEqual(state.levels.newcomer.foundIds, ["arya"]);
+  assert.deepEqual(state.levels.fan.foundIds, ["arya"]);
   assert.equal(storage.getItem(V1_STORAGE_KEY), null);
   assert.notEqual(storage.getItem(V2_STORAGE_KEY), null);
 });

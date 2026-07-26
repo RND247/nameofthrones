@@ -42,7 +42,7 @@ export function sanitizeProgressState(candidate, levelIds, rosterIdsByLevel) {
   return {
     version: STORAGE_VERSION,
     activeDifficulty: candidate.activeDifficulty,
-    levels,
+    levels: synchronizeFoundIds(levels, rosterIdsByLevel),
   };
 }
 
@@ -61,32 +61,38 @@ export function updateLevelProgress(
   state,
   levelId,
   progress,
-  validRosterIds,
+  rosterIdsByLevel,
 ) {
-  if (!Object.hasOwn(state.levels, levelId)) {
+  if (
+    !Object.hasOwn(state.levels, levelId) ||
+    !(rosterIdsByLevel instanceof Map)
+  ) {
     return state;
   }
 
+  const levels = {
+    ...state.levels,
+    [levelId]: sanitizeLevelProgress(
+      progress,
+      rosterIdsByLevel.get(levelId) ?? new Set(),
+    ),
+  };
+
   return {
     ...state,
-    levels: {
-      ...state.levels,
-      [levelId]: sanitizeLevelProgress(progress, validRosterIds),
-    },
+    levels: synchronizeFoundIds(levels, rosterIdsByLevel),
   };
 }
 
-export function resetLevelProgress(state, levelId) {
-  if (!Object.hasOwn(state.levels, levelId)) {
-    return state;
+export function resetAllProgress(state) {
+  const levels = {};
+  for (const levelId of Object.keys(state.levels)) {
+    levels[levelId] = createEmptyLevelProgress();
   }
 
   return {
     ...state,
-    levels: {
-      ...state.levels,
-      [levelId]: createEmptyLevelProgress(),
-    },
+    levels,
   };
 }
 
@@ -125,10 +131,13 @@ export function loadProgressState(
   const migratedState = {
     ...emptyState,
     activeDifficulty: null,
-    levels: {
-      ...emptyState.levels,
-      [expertLevelId]: legacyProgress,
-    },
+    levels: synchronizeFoundIds(
+      {
+        ...emptyState.levels,
+        [expertLevelId]: legacyProgress,
+      },
+      rosterIdsByLevel,
+    ),
   };
 
   if (saveProgressState(storage, migratedState)) {
@@ -159,6 +168,26 @@ function sanitizeLevelProgress(candidate, validRosterIds) {
     completedAt: candidate.completedAt,
     filterHouseId: candidate.filterHouseId,
   };
+}
+
+function synchronizeFoundIds(levels, rosterIdsByLevel) {
+  const sharedFoundIds = new Set(
+    Object.values(levels).flatMap((progress) => progress.foundIds),
+  );
+  const synchronizedLevels = {};
+
+  for (const [levelId, progress] of Object.entries(levels)) {
+    const validRosterIds = rosterIdsByLevel.get(levelId) ?? new Set();
+    const foundIds = [...sharedFoundIds].filter((id) => validRosterIds.has(id));
+    synchronizedLevels[levelId] = {
+      ...progress,
+      foundIds,
+      completedAt:
+        foundIds.length === validRosterIds.size ? progress.completedAt : null,
+    };
+  }
+
+  return synchronizedLevels;
 }
 
 function isValidLevelProgress(candidate) {
