@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Green and gold medieval portrait placeholder">
+  <rect width="512" height="512" fill="#3d744f"/>
+  <circle cx="256" cy="256" r="209" fill="#579164" stroke="#e0c45a" stroke-width="14"/>
+  <circle cx="92" cy="105" r="22" fill="none" stroke="#d4e0a8" stroke-width="7"/>
+  <circle cx="420" cy="105" r="22" fill="none" stroke="#d4e0a8" stroke-width="7"/>
+  <path d="M141 444c18-93 65-141 115-141s97 48 115 141" fill="#e0c45a"/>
+  <circle cx="256" cy="214" r="84" fill="#ac8a58"/>
+  <path d="M177 206c15-91 143-99 158 0-27-27-51-39-79-39s-52 12-79 39Z" fill="#5d4933"/>
+</svg>

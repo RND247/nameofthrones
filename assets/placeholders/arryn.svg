@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sky blue medieval portrait placeholder">
+  <rect width="512" height="512" fill="#79a9c7"/>
+  <circle cx="256" cy="256" r="209" fill="#b9d6e3" stroke="#e8edf0" stroke-width="14"/>
+  <path d="m57 146 70-49 66 49 63-49 63 49 66-49 70 49" fill="none" stroke="#f4f7f8" stroke-width="12"/>
+  <path d="M142 444c17-92 64-140 114-140s97 48 114 140" fill="#446d91"/>
+  <circle cx="256" cy="214" r="84" fill="#8b8276"/>
+  <path d="M176 206c16-91 144-99 160 0-28-27-52-39-80-39s-52 12-80 39Z" fill="#eee9df"/>
+</svg>

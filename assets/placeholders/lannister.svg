@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Crimson and gold medieval portrait placeholder">
+  <rect width="512" height="512" fill="#7e1f2b"/>
+  <circle cx="256" cy="256" r="210" fill="#a92d38" stroke="#d4a83d" stroke-width="14"/>
+  <path d="M74 256h364M256 46v420" stroke="#d4a83d" stroke-width="5" opacity=".45"/>
+  <path d="M144 444c17-92 63-140 112-140s95 48 112 140" fill="#e2bd58"/>
+  <circle cx="256" cy="214" r="84" fill="#d0a84b"/>
+  <path d="M176 209c12-92 150-103 160 0-29-29-53-41-80-41s-52 12-80 41Z" fill="#68452b"/>
+</svg>

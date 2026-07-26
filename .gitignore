@@ -1,0 +1,14 @@
+# Local Python artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local secrets
+.env
+.env.*
+
+# Raw portrait output and interrupted temporary files
+assets/portraits/*.png
+assets/portraits/.*.tmp
+data/.portrait-manifest.json.*.tmp
+data/.characters.json.*.tmp

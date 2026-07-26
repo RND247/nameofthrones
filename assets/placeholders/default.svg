@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Generic medieval portrait placeholder">
+  <rect width="512" height="512" fill="#d8c7a5"/>
+  <circle cx="256" cy="256" r="212" fill="#efe4cc" stroke="#615746" stroke-width="12"/>
+  <path d="M150 442c12-92 58-140 106-140s94 48 106 140" fill="#615746"/>
+  <circle cx="256" cy="215" r="86" fill="#786c58"/>
+  <path d="M174 207c12-87 152-104 170 2-27-30-53-43-88-43-34 0-58 12-82 41Z" fill="#3d382f"/>
+</svg>

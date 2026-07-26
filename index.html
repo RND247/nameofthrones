@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <meta
+      name="description"
+      content="Name the characters of Westeros before time runs out."
+    />
+    <title>Name of Thrones</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to the game</a>
+
+    <header class="site-header" aria-label="Game status">
+      <div class="header-row">
+        <a class="wordmark" href="#main-content" aria-label="Name of Thrones home">
+          <span aria-hidden="true">♜</span>
+          <span>Name of Thrones</span>
+        </a>
+
+        <dl class="game-stats">
+          <div>
+            <dt>Found</dt>
+            <dd><output id="found-count">0</output>/<output id="total-count">0</output></dd>
+          </div>
+          <div>
+            <dt>Time</dt>
+            <dd><time id="timer" datetime="PT0S">00:00</time></dd>
+          </div>
+        </dl>
+
+        <button class="button button-quiet" id="reset-button" type="button">
+          Reset game
+        </button>
+      </div>
+      <p class="spoiler-notice">
+        Spoiler notice: revealed names and house details may spoil the books and
+        television series.
+      </p>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <section class="hero" aria-labelledby="game-heading">
+        <p class="eyebrow">The realm remembers</p>
+        <h1 id="game-heading">How many names can you claim?</h1>
+        <p class="intro">
+          Enter a character's full name. Only an exact name or accepted alias
+          will reveal the card.
+        </p>
+
+        <form class="guess-form" id="name-form" novalidate>
+          <label for="name-input">Character name</label>
+          <div class="guess-controls">
+            <input
+              id="name-input"
+              name="character-name"
+              type="text"
+              maxlength="120"
+              autocomplete="off"
+              autocapitalize="words"
+              spellcheck="false"
+              enterkeyhint="done"
+              required
+              aria-describedby="guess-help guess-message"
+            />
+            <button class="button button-primary" type="submit">Claim name</button>
+          </div>
+          <p class="form-help" id="guess-help">
+            Case, extra spaces, and common accent marks do not matter. Exact
+            matches reveal automatically.
+          </p>
+          <p class="guess-message" id="guess-message" aria-live="polite"></p>
+        </form>
+
+        <div class="progress-panel">
+          <div class="progress-copy">
+            <span>Realm discovered</span>
+            <output id="progress-label" for="game-progress">0%</output>
+          </div>
+          <progress id="game-progress" value="0" max="1">0%</progress>
+        </div>
+      </section>
+
+      <section class="realm" aria-labelledby="realm-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Great houses</p>
+            <h2 id="realm-heading">The houses of the realm</h2>
+          </div>
+          <div class="filter-panel">
+            <span id="filter-label">Show house</span>
+            <div
+              class="house-filters"
+              id="house-filters"
+              role="group"
+              aria-labelledby="filter-label"
+            ></div>
+          </div>
+        </div>
+
+        <div id="loading-state" class="state-message" role="status">
+          Opening the archives…
+        </div>
+        <div id="house-list" class="house-list"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>A quiet corner of the Seven Kingdoms. No tracking, no ravens sent.</p>
+    </footer>
+
+    <noscript>
+      <p class="noscript-message">
+        JavaScript is needed to load the houses and play Name of Thrones.
+      </p>
+    </noscript>
+  </body>
+</html>

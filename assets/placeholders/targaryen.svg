@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Black and red medieval portrait placeholder">
+  <rect width="512" height="512" fill="#211f23"/>
+  <circle cx="256" cy="256" r="209" fill="#302d33" stroke="#9c2635" stroke-width="15"/>
+  <path d="M91 116c62 34 98 24 126-37M421 116c-62 34-98 24-126-37" fill="none" stroke="#9c2635" stroke-width="11"/>
+  <path d="M142 444c17-93 64-141 114-141s97 48 114 141" fill="#8c2633"/>
+  <circle cx="256" cy="214" r="84" fill="#c5c1ca"/>
+  <path d="M175 207c14-95 150-100 162 0-28-28-54-40-81-40s-52 12-81 40Z" fill="#eeeaf0"/>
+</svg>

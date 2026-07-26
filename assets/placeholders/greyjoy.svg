@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sea grey medieval portrait placeholder">
+  <rect width="512" height="512" fill="#313940"/>
+  <circle cx="256" cy="256" r="209" fill="#46525b" stroke="#c4a74d" stroke-width="13"/>
+  <path d="M50 117c52-28 103-28 154 0s103 28 154 0 77-24 104-11M50 397c52-28 103-28 154 0s103 28 154 0 77-24 104-11" fill="none" stroke="#83939c" stroke-width="9"/>
+  <path d="M142 444c17-92 64-140 114-140s97 48 114 140" fill="#c4a74d"/>
+  <circle cx="256" cy="214" r="84" fill="#71808a"/>
+  <path d="M176 206c16-91 144-99 160 0-28-27-52-39-80-39s-52 12-80 39Z" fill="#283038"/>
+</svg>

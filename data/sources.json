@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "awoiaf",
+      "name": "A Wiki of Ice and Fire",
+      "url": "https://awoiaf.westeros.org/",
+      "license": {
+        "name": "Creative Commons Attribution-ShareAlike 3.0 unless otherwise noted",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      },
+      "provenance": "Preferred source. The importer reads MediaWiki page titles, categories, page IDs, article lengths, source URLs, and revision metadata. It does not copy article prose.",
+      "limitations": "Wiki categories and access rules can change. Every wiki character record must retain the exact page revision used by the import."
+    },
+    {
+      "id": "an-api-of-ice-and-fire",
+      "name": "An API of Ice and Fire",
+      "url": "https://anapioficeandfire.com/",
+      "license": {
+        "name": "No separate data license stated by the API",
+        "url": "https://anapioficeandfire.com/Documentation"
+      },
+      "provenance": "Deterministic fallback source used when the wiki API is unavailable or incomplete. The importer keeps factual character, book, and house fields plus each API object URL.",
+      "limitations": "The API does not expose wiki revision IDs or article lengths, and its canon labels are less detailed. Fallback records therefore use null revision fields and rank article length as zero."
+    }
+  ],
+  "release_notes": [
+    "Release 1.0 targets exactly 1000 named characters with at least one book reference.",
+    "Blank and explicit unnamed records, duplicate source objects, TV-only or game-only records, semi-canon markers, and The Ice Dragon are excluded.",
+    "Accepted-name collisions are warnings because one alias can refer to more than one person.",
+    "Portraits are not imported. A future portrait path must be a safe relative file below portraits."
+  ]
+}

@@ -1,0 +1,2562 @@
+{
+  "schema_version": 1,
+  "groups": [
+    {
+      "id": "house-api-2",
+      "name": "House Allyrion of Godsgrace",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/2",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-4",
+      "name": "House Ambrose",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/4",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-7",
+      "name": "House Arryn of the Eyrie",
+      "kind": "house",
+      "region": "The Vale",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/7",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-10",
+      "name": "House Baelish of Harrenhal",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/10",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-11",
+      "name": "House Baelish of the Fingers",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/11",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-13",
+      "name": "House Banefort of Banefort",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/13",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-14",
+      "name": "House Bar Emmon of Sharp Point",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/14",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-15",
+      "name": "House Baratheon of Dragonstone",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/15",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-16",
+      "name": "House Baratheon of King's Landing",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/16",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-17",
+      "name": "House Baratheon of Storm's End",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/17",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-18",
+      "name": "House Beesbury of Honeyholt",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/18",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-19",
+      "name": "House Belmore of Strongsong",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/19",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-23",
+      "name": "House Blackfyre of King's Landing",
+      "kind": "house",
+      "region": null,
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/23",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-24",
+      "name": "House Blackmont of Blackmont",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/24",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-26",
+      "name": "House Blacktyde of Blacktyde",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/26",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-27",
+      "name": "House Blackwood of Raventree Hall",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/27",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-28",
+      "name": "House Blanetree",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/28",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-29",
+      "name": "House Blount",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/29",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-34",
+      "name": "House Bolton of the Dreadfort",
+      "kind": "house",
+      "region": "The North",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/34",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-36",
+      "name": "House Botley of Lordsport",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/36",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-37",
+      "name": "House Bracken of Stone Hedge",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/37",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-40",
+      "name": "House Brax of Hornvale",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/40",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-46",
+      "name": "House Broom",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/46",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-48",
+      "name": "House Brune of Brownhollow",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/48",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-51",
+      "name": "House Buckwell of the Antlers",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/51",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-52",
+      "name": "House Bulwer of Blackcrown",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/52",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-55",
+      "name": "House Butterwell",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/55",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-56",
+      "name": "House Byrch",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/56",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-57",
+      "name": "House Bywater",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/57",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-60",
+      "name": "House Caron of Nightsong",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/60",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-61",
+      "name": "House Cassel",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/61",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-65",
+      "name": "House Celtigar of Claw Isle",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/65",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-66",
+      "name": "House Cerwyn of Cerwyn",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/66",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-72",
+      "name": "House Clegane",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/72",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-74",
+      "name": "House Cockshaw",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/74",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-77",
+      "name": "House Cole",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/77",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-80",
+      "name": "House Connington of Griffin's Roost",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/80",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-81",
+      "name": "House Corbray of Heart's Home",
+      "kind": "house",
+      "region": null,
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/81",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-85",
+      "name": "House Crabb",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/85",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-86",
+      "name": "House Crakehall of Crakehall",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/86",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-87",
+      "name": "House Crane of Red Lake",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/87",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-92",
+      "name": "House Dalt of Lemonwood",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/92",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-97",
+      "name": "House Darry of Darry",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/97",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-99",
+      "name": "House Dayne of Starfall",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/99",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-102",
+      "name": "House Dondarrion of Blackhaven",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/102",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-106",
+      "name": "House Drumm of Old Wyk",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/106",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-109",
+      "name": "House Durrandon",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/109",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-111",
+      "name": "House Dustin of Barrowton",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/111",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-113",
+      "name": "House Egen",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/113",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-115",
+      "name": "House Erenford",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/115",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-117",
+      "name": "House Estermont of Greenstone",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/117",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-118",
+      "name": "House Estren of Wyndhall",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/118",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-121",
+      "name": "House Farring",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/121",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-123",
+      "name": "House Farwynd of the Lonely Light",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/123",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-131",
+      "name": "House Flint of Flint's Finger",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/131",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-132",
+      "name": "House Flint of Widow's Watch",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/132",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-133",
+      "name": "House Florent of Brightwater Keep",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/133",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-135",
+      "name": "House Foote",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/135",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-136",
+      "name": "House Foote of Nightsong",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/136",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-139",
+      "name": "House Fossoway of Cider Hall",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/139",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-140",
+      "name": "House Fossoway of New Barrel",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/140",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-141",
+      "name": "House Fowler of Skyreach",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/141",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-142",
+      "name": "House Frey of Riverrun",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/142",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-143",
+      "name": "House Frey of the Crossing",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/143",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-146",
+      "name": "House Gargalen of Salt Shore",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/146",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-150",
+      "name": "House Glover of Deepwood Motte",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/150",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-151",
+      "name": "House Goodbrook",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/151",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-155",
+      "name": "House Goodbrother of Hammerhorn",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/155",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-157",
+      "name": "House Goodbrother of Shatterstone",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/157",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-158",
+      "name": "House Gower",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/158",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-159",
+      "name": "House Graceford of Holyhall",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/159",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-163",
+      "name": "House Greenfield of Greenfield",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/163",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-166",
+      "name": "House Grell",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/166",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-169",
+      "name": "House Greyjoy of Pyke",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/169",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-172",
+      "name": "House Haigh",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/172",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-176",
+      "name": "House Hardyng",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/176",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-178",
+      "name": "House Harlaw of Harlaw",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/178",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-180",
+      "name": "House Harlaw of Harridan Hill",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/180",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-185",
+      "name": "House Hastwyck",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/185",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-186",
+      "name": "House Hasty",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/186",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-187",
+      "name": "House Hawick of Saltpans",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/187",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-189",
+      "name": "House Hayford of Hayford",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/189",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-194",
+      "name": "House Hewett of Oakenshield",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/194",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-195",
+      "name": "House Hightower of the Hightower",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/195",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-198",
+      "name": "House Hollard",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/198",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-202",
+      "name": "House Hornwood of Hornwood",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/202",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-203",
+      "name": "House Horpe",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/203",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-207",
+      "name": "House Hunter of Longbow Hall",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/207",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-210",
+      "name": "House Ironmaker",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/210",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-212",
+      "name": "House Jast",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/212",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-213",
+      "name": "House Jordayne of the Tor",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/213",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-215",
+      "name": "House Karstark of Karhold",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/215",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-219",
+      "name": "House Kenning of Kayce",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/219",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-220",
+      "name": "House Kettleblack",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/220",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-229",
+      "name": "House Lannister of Casterly Rock",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/229",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-230",
+      "name": "House Lannister of Darry",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/230",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-231",
+      "name": "House Lannister of Lannisport",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/231",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-234",
+      "name": "House Lefford of the Golden Tooth",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/234",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-239",
+      "name": "House Locke of Oldcastle",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/239",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-245",
+      "name": "House Lorch",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/245",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-246",
+      "name": "House Lothston of Harrenhal",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/246",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-250",
+      "name": "House Lydden of Deep Den",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/250",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-254",
+      "name": "House Mallister of Seagard",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/254",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-255",
+      "name": "House Manderly of White Harbor",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/255",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-257",
+      "name": "House Manwoody of Kingsgrave",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/257",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-258",
+      "name": "House Marbrand of Ashemark",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/258",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-260",
+      "name": "House Massey of Stonedance",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/260",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-261",
+      "name": "House Meadows of Grassy Vale",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/261",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-263",
+      "name": "House Merlyn of Pebbleton",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/263",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-264",
+      "name": "House Merryweather of Longtable",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/264",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-267",
+      "name": "House Mollen",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/267",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-268",
+      "name": "House Moore",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/268",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-269",
+      "name": "House Mooton of Maidenpool",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/269",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-271",
+      "name": "House Mormont of Bear Island",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/271",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-272",
+      "name": "House Morrigen of Crow's Nest",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/272",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-275",
+      "name": "House Mullendore of Uplands",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/275",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-278",
+      "name": "House Myre of Harlaw",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/278",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-281",
+      "name": "House Norcross",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/281",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-282",
+      "name": "House Norrey",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/282",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-283",
+      "name": "House Norridge",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/283",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-285",
+      "name": "House Nymeros Martell of Sunspear",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/285",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-286",
+      "name": "House Oakheart of Old Oak",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/286",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-291",
+      "name": "House Osgrey of Standfast",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/291",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-293",
+      "name": "House Paege",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/293",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-295",
+      "name": "House Payne",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/295",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-296",
+      "name": "House Peake of Starpike",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/296",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-299",
+      "name": "House Peckledon",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/299",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-300",
+      "name": "House Penrose of Parchments",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/300",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-302",
+      "name": "House Piper of Pinkmaiden",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/302",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-303",
+      "name": "House Plumm",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/303",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-305",
+      "name": "House Poole",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/305",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-306",
+      "name": "House Prester of Feastfires",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/306",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-311",
+      "name": "House Qorgyle of Sandstone",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/311",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-316",
+      "name": "House Redfort of Redfort",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/316",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-317",
+      "name": "House Redwyne of the Arbor",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/317",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-318",
+      "name": "House Reed of Greywater Watch",
+      "kind": "house",
+      "region": "The Neck",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/318",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-319",
+      "name": "House Reyne of Castamere",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/319",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-325",
+      "name": "House Rosby of Rosby",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/325",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-326",
+      "name": "House Rowan of Goldengrove",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/326",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-328",
+      "name": "House Royce of Runestone",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/328",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-329",
+      "name": "House Royce of the Gates of the Moon",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/329",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-333",
+      "name": "House Ryger of Willow Wood",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/333",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-335",
+      "name": "House Ryswell of the Rills",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/335",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-336",
+      "name": "House Saltcliffe of Saltcliffe",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/336",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-337",
+      "name": "House Santagar of Spottswood",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/337",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-340",
+      "name": "House Seaworth of Cape Wrath",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/340",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-341",
+      "name": "House Selmy of Harvest Hall",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/341",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-343",
+      "name": "House Serry of Southshield",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/343",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-354",
+      "name": "House Slynt of Harrenhal",
+      "kind": "house",
+      "region": "None",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/354",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-355",
+      "name": "House Smallwood of Acorn Hall",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/355",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-359",
+      "name": "House Stackspear",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/359",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-360",
+      "name": "House Staedmon of Broad Arch",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/360",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-362",
+      "name": "House Stark of Winterfell",
+      "kind": "house",
+      "region": "The North",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/362",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-364",
+      "name": "House Stokeworth of Stokeworth",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/364",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-369",
+      "name": "House Strong of Harrenhal",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/369",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-372",
+      "name": "House Sunglass of Sweetport Sound",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/372",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-373",
+      "name": "House Swann of Stonehelm",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/373",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-374",
+      "name": "House Swyft of Cornfield",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/374",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-376",
+      "name": "House Tallhart of Torrhen's Square",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/376",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-377",
+      "name": "House Tarbeck of Tarbeck Hall",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/377",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-378",
+      "name": "House Targaryen of King's Landing",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/378",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-379",
+      "name": "House Tarly of Horn Hill",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/379",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-380",
+      "name": "House Tarth of Evenfall Hall",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/380",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-385",
+      "name": "House Thenn",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/385",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-386",
+      "name": "House Thorne",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/386",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-387",
+      "name": "House Toland of Ghost Hill",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/387",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-388",
+      "name": "House Tollett of the Grey Glen",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/388",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-389",
+      "name": "House Torrent of Littlesister",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/389",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-392",
+      "name": "House Toyne",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/392",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-393",
+      "name": "House Trant of Gallowsgrey",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/393",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-395",
+      "name": "House Tully of Riverrun",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/395",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-397",
+      "name": "House Tyrell of Brightwater Keep",
+      "kind": "house",
+      "region": "The Reach",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/397",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-398",
+      "name": "House Tyrell of Highgarden",
+      "kind": "house",
+      "region": "The Reach",
+      "major": true,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/398",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-400",
+      "name": "House Uller of Hellholt",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/400",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-401",
+      "name": "House Umber of the Last Hearth",
+      "kind": "house",
+      "region": "The North",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/401",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-403",
+      "name": "House Vaith of the Red Dunes",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/403",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-404",
+      "name": "House Vance of Atranta",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/404",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-405",
+      "name": "House Vance of Wayfarer's Rest",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/405",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-407",
+      "name": "House Velaryon of Driftmark",
+      "kind": "house",
+      "region": "The Crownlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/407",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-408",
+      "name": "House Vikary",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/408",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-409",
+      "name": "House Volmark",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/409",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-410",
+      "name": "House Vypren",
+      "kind": "house",
+      "region": null,
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/410",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-411",
+      "name": "House Vyrwel of Darkdell",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/411",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-415",
+      "name": "House Waxley of Wickenden",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/415",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-416",
+      "name": "House Wayn",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/416",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-417",
+      "name": "House Waynwood of Ironoaks",
+      "kind": "house",
+      "region": "The Vale",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/417",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-419",
+      "name": "House Webber of Coldmoat",
+      "kind": "house",
+      "region": "The Reach",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/419",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-425",
+      "name": "House Westerling of the Crag",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/425",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-427",
+      "name": "House Whent of Harrenhal",
+      "kind": "house",
+      "region": "The Riverlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/427",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-438",
+      "name": "House Wylde of Rain House",
+      "kind": "house",
+      "region": "The Stormlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/438",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-439",
+      "name": "House Wynch of Iron Holt",
+      "kind": "house",
+      "region": "Iron Islands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/439",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-441",
+      "name": "House Yarwyck",
+      "kind": "house",
+      "region": "The Westerlands",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/441",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "house-api-444",
+      "name": "House Yronwood of Yronwood",
+      "kind": "house",
+      "region": "Dorne",
+      "major": false,
+      "source": {
+        "source_id": "an-api-of-ice-and-fire",
+        "url": "https://anapioficeandfire.com/api/houses/444",
+        "revision_id": null,
+        "revision_timestamp": null
+      }
+    },
+    {
+      "id": "group-essos",
+      "name": "Essos and the Free Cities",
+      "kind": "fallback",
+      "region": "Essos",
+      "major": false,
+      "source": null
+    },
+    {
+      "id": "group-faith",
+      "name": "Faith of the Seven",
+      "kind": "fallback",
+      "region": "Westeros",
+      "major": false,
+      "source": null
+    },
+    {
+      "id": "group-free-folk",
+      "name": "Free Folk",
+      "kind": "fallback",
+      "region": "Beyond the Wall",
+      "major": false,
+      "source": null
+    },
+    {
+      "id": "group-nights-watch",
+      "name": "Night's Watch",
+      "kind": "fallback",
+      "region": "The Wall",
+      "major": false,
+      "source": null
+    },
+    {
+      "id": "group-citadel",
+      "name": "The Citadel",
+      "kind": "fallback",
+      "region": "Oldtown",
+      "major": false,
+      "source": null
+    },
+    {
+      "id": "group-unaffiliated",
+      "name": "Unaffiliated and Unknown",
+      "kind": "fallback",
+      "region": null,
+      "major": false,
+      "source": null
+    }
+  ]
+}

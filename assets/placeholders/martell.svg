@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Warm orange medieval portrait placeholder">
+  <rect width="512" height="512" fill="#c96b35"/>
+  <circle cx="256" cy="256" r="209" fill="#e28a48" stroke="#8b2e2b" stroke-width="14"/>
+  <path d="M64 129h384M64 383h384" stroke="#f1c36c" stroke-width="10" stroke-dasharray="18 15"/>
+  <path d="M141 444c18-93 65-141 115-141s97 48 115 141" fill="#8b2e2b"/>
+  <circle cx="256" cy="214" r="84" fill="#9b6042"/>
+  <path d="M176 207c16-91 144-99 160 0-28-27-52-39-80-39s-52 12-80 39Z" fill="#3b2a25"/>
+</svg>

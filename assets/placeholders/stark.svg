@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Cool grey medieval portrait placeholder">
+  <rect width="512" height="512" fill="#cbd3d6"/>
+  <path d="M24 102 86 40l62 62 54-62 54 62 54-62 54 62 62-62 62 62v386H24Z" fill="#e8edef"/>
+  <circle cx="256" cy="244" r="190" fill="none" stroke="#56626a" stroke-width="13"/>
+  <path d="M142 444c18-91 65-137 114-137s96 46 114 137" fill="#56626a"/>
+  <circle cx="256" cy="216" r="84" fill="#78858c"/>
+  <path d="M177 205c19-89 142-96 159 0-27-25-51-36-80-36s-53 11-79 36Z" fill="#3b464d"/>
+</svg>
