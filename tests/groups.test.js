@@ -133,6 +133,43 @@ test("a character's surname assigns them to the matching house", () => {
   ]);
 });
 
+test("characters without a matching family name leave house groups", () => {
+  const groupsWithFallback = [
+    ...groups,
+    {
+      id: "group-unaffiliated",
+      name: "Unaffiliated and Unknown",
+      kind: "fallback",
+      region: null,
+      major: false,
+      source: null,
+    },
+  ];
+  const assigned = assignCharactersToMatchingHouses(
+    [
+      {
+        id: "missandei",
+        name: "Missandei",
+        primaryHouseId: "baratheon-dragonstone",
+        houseIds: ["baratheon-dragonstone"],
+      },
+      {
+        id: "grey-worm",
+        name: "Grey Worm",
+        primaryHouseId: "baratheon-dragonstone",
+        houseIds: ["baratheon-dragonstone"],
+      },
+    ],
+    groupsWithFallback,
+  );
+
+  assert.deepEqual(
+    assigned.map((character) => character.primaryHouseId),
+    ["group-unaffiliated", "group-unaffiliated"],
+  );
+  assert.deepEqual(assigned.map((character) => character.houseIds), [[], []]);
+});
+
 test("known houses stay ahead of fallback and minor groups", () => {
   const result = collapseLocationGroups(groups);
 

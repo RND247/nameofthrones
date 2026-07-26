@@ -93,6 +93,9 @@ export function assignCharactersToMatchingHouses(characters, groups) {
   }
 
   const groupIdByFamilyName = buildGroupIdByFamilyName(groups);
+  const fallbackGroupId = groups.find(
+    (group) => group?.id === "group-unaffiliated" && group.kind === "fallback",
+  )?.id;
   return characters.map((character) => {
     if (
       character === null ||
@@ -104,16 +107,30 @@ export function assignCharactersToMatchingHouses(characters, groups) {
 
     const surname = getSurname(character.name);
     const matchingGroupId = groupIdByFamilyName.get(surname);
-    if (!matchingGroupId) {
+    if (matchingGroupId) {
+      return Object.freeze({
+        ...character,
+        primaryHouseId: matchingGroupId,
+        houseIds: Object.freeze([
+          ...new Set([...character.houseIds, matchingGroupId]),
+        ]),
+      });
+    }
+
+    if (
+      !fallbackGroupId ||
+      !groups.some(
+        (group) =>
+          group?.id === character.primaryHouseId && group.kind === "house",
+      )
+    ) {
       return character;
     }
 
     return Object.freeze({
       ...character,
-      primaryHouseId: matchingGroupId,
-      houseIds: Object.freeze([
-        ...new Set([...character.houseIds, matchingGroupId]),
-      ]),
+      primaryHouseId: fallbackGroupId,
+      houseIds: Object.freeze([]),
     });
   });
 }
