@@ -58,7 +58,7 @@ Original new source code is copyright 2026 RND247 and is available under
 datasets, source text, franchise material, and generated assets.
 
 House placeholder graphics are project interface assets. They are generic and
-do not claim to reproduce official heraldry. The 40 Newcomer character
+do not claim to reproduce official heraldry. The 59 Newcomer character
 portraits were supplied by the project maintainer. They are original,
 noncanonical interpretations and are excluded from the MIT code license.
 

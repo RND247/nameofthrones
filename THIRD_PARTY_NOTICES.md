@@ -67,7 +67,7 @@ Martin, HBO, or any related publisher, licensee, or rights holder.
 
 ## Generated assets
 
-The current release includes 40 Newcomer character portraits supplied by the
+The current release includes 59 Newcomer character portraits supplied by the
 project maintainer. They are noncanonical interpretations, not official art or
 factual references. They may be inaccurate or biased and require human review.
 They must not copy wiki images, official artwork, protected franchise designs,
